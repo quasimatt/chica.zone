@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chica Mob Posts</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    textarea { width: 100%; height: 100px; margin-bottom: 10px; }
+    button { padding: 10px 15px; }
+    #posts { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Chica Mob Posts</h1>
+  <div id="posts">Loading posts...</div>
+  <form id="postForm">
+    <textarea id="content" placeholder="Write your post here..." required></textarea>
+    <button type="button" onclick="addPost()">Post</button>
+  </form>
+  <script>
+    function loadPosts() {
+      google.script.run.withSuccessHandler(renderPosts).getPosts();
+    }
+
+    function renderPosts(posts) {
+      const postDiv = document.getElementById('posts');
+      postDiv.innerHTML = posts
+        .map(post => `<p><strong>${post.author}</strong> (${new Date(post.date).toLocaleString()}):<br>${post.content}</p>`)
+        .join('');
+    }
+
+    function addPost() {
+      const content = document.getElementById('content').value;
+      if (content.trim()) {
+        google.script.run
+          .withSuccessHandler(() => {
+            document.getElementById('content').value = '';
+            loadPosts();
+          })
+          .addPost(content);
+      }
+    }
+
+    window.onload = loadPosts;
+  </script>
+</body>
+</html>

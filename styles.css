@@ -1,7 +1,9 @@
-/* Import the requested fonts */
+/* Import fonts - using available Google Fonts that match the vibe */
 @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
-@import url('https://fonts.cdnfonts.com/css/tequila-sunrise');
-@import url('https://fonts.cdnfonts.com/css/strange-magic');
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Butcherman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Griffy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
 
 * {
     margin: 0;
@@ -10,104 +12,120 @@
 }
 
 body {
-    font-family: 'Strange Magic', 'Creepster', cursive;
+    font-family: 'Griffy', 'Creepster', cursive;
     line-height: 1.4;
     color: #ff69b4;
-    background: linear-gradient(135deg, #1a0033 0%, #000000 50%, #2d1b69 100%);
+    background: #000000;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
 }
 
-/* Gothic horror background pattern */
+/* Chaotic MySpace-style background */
 body::before {
-    content: '☠️ 🦇 🕷️ 🕸️ ⚰️ 🔮 🌙 ⭐ 💀 👻 🎭 🗡️ 🏰 🌹 🥀 ⚡ 🔥 💜 🖤 💀 ☠️ 🦇 🕷️ 🕸️ ⚰️ 🔮 🌙 ⭐ 💀 👻 🎭 🗡️ 🏰 🌹 🥀 ⚡ 🔥 💜 🖤 💀 ☠️ 🦇 🕷️ 🕸️ ⚰️ 🔮 🌙 ⭐ 💀 👻 🎭 🗡️ 🏰 🌹 🥀 ⚡ 🔥 💜 🖤';
+    content: '☠️💀🦇🕷️⚰️🔮🌙⭐👻🎭🗡️🏰🌹🥀⚡🔥💜🖤💎✨🌟💫⭐🎪🎨🖌️✏️📝🎯🎲🃏🎴💖💕💗💓💝🎀🎈🎉🎊🌈🦄🧚🍭🍬💀☠️🦇🕷️⚰️🔮🌙⭐👻🎭🗡️🏰🌹🥀⚡🔥💜🖤💎✨🌟💫⭐🎪🎨🖌️✏️📝🎯🎲🃏🎴💖💕💗💓💝🎀🎈🎉🎊🌈🦄🧚🍭🍬';
     position: fixed;
     top: 0;
     left: 0;
-    width: 200%;
-    height: 200%;
-    font-size: 24px;
-    color: rgba(255, 105, 180, 0.08);
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    color: rgba(255, 105, 180, 0.15);
     word-wrap: break-word;
     white-space: pre-wrap;
     pointer-events: none;
     z-index: -1;
-    animation: haunt 25s linear infinite;
-    transform: rotate(-10deg);
+    line-height: 1.2;
+    transform: rotate(-5deg);
 }
 
-@keyframes haunt {
-    0% { transform: rotate(-10deg) translateX(-5%); }
-    100% { transform: rotate(-10deg) translateX(-15%); }
+/* Chaotic scattered elements */
+body::after {
+    content: '★ CHICA MOB ★ 💀 MYSTERIES 💀 🦇 GOTHIC 🦇 ⚡ CHAOS ⚡ 🌙 DARK 🌙 💜 PURPLE 💜 🖤 BLACK 🖤 💎 SPARKLE 💎 ✨ MAGIC ✨ 🔮 CRYSTAL 🔮 👻 GHOST 👻 🕷️ SPIDER 🕷️ ⚰️ COFFIN ⚰️ 🏰 CASTLE 🏰 🌹 ROSE 🌹 🗡️ SWORD 🗡️ 🎭 MASK 🎭';
+    position: fixed;
+    top: 20%;
+    right: 10%;
+    width: 30%;
+    height: 60%;
+    font-size: 12px;
+    color: rgba(138, 43, 226, 0.2);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    pointer-events: none;
+    z-index: -1;
+    line-height: 1.5;
+    transform: rotate(15deg);
 }
 
 header {
-    background: linear-gradient(45deg, #2d1b69, #4a0e4e);
+    background: #2d1b69;
     color: #ff69b4;
     text-align: center;
     padding: 2rem 1rem;
-    border: 3px solid #ff69b4;
-    border-style: double;
+    border: 5px solid #ff69b4;
+    border-style: dashed;
     position: relative;
     overflow: hidden;
     margin: 10px;
-    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    box-shadow: 
+        0 0 0 3px #000000,
+        0 0 0 6px #ff69b4,
+        0 0 20px #ff69b4,
+        inset 0 0 20px rgba(255, 105, 180, 0.3);
+    transform: rotate(-1deg);
 }
 
 header::before {
-    content: '🌙 DARK MYSTERIES 🌙 💀 GOTHIC TALES 💀 🦇 SHADOW REALM 🦇 ⚰️ HAUNTED STORIES ⚰️ 🕷️ WEB OF SECRETS 🕷️ 🔮 MYSTIC VISIONS 🔮 🏰 CASTLE OF DOOM 🏰 🌹 THORNED ROSES 🌹 ⚡ ELECTRIC NIGHTMARES ⚡ 🖤 DARK HEARTS 🖤 💜 PURPLE SHADOWS 💜 👻 GHOSTLY WHISPERS 👻';
+    content: '💀💀💀 WELCOME TO THE DARKNESS 💀💀💀 🦇🦇🦇 ENTER IF YOU DARE 🦇🦇🦇 ⚡⚡⚡ CHICA MOB RULES ⚡⚡⚡ 🌙🌙🌙 MIDNIGHT MYSTERIES 🌙🌙🌙 👻👻👻 GHOSTLY TALES 👻👻👻 🕷️🕷️🕷️ WEB OF SECRETS 🕷️🕷️🕷️';
     position: absolute;
-    top: -20px;
-    left: -50px;
-    right: -50px;
-    bottom: -20px;
-    font-size: 11px;
-    color: rgba(255, 105, 180, 0.1);
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    font-size: 8px;
+    color: rgba(255, 105, 180, 0.2);
     word-wrap: break-word;
     white-space: pre-wrap;
     pointer-events: none;
     z-index: 0;
-    animation: flicker 4s ease-in-out infinite;
-}
-
-@keyframes flicker {
-    0%, 100% { opacity: 0.1; }
-    50% { opacity: 0.2; }
+    border: 2px dotted rgba(255, 105, 180, 0.3);
+    padding: 5px;
 }
 
 header h1 {
-    font-family: 'Tequila Sunrise', 'Creepster', cursive;
-    font-size: 3.5rem;
+    font-family: 'Metal Mania', 'Creepster', cursive;
+    font-size: 4rem;
     margin-bottom: 0.5rem;
     color: #ff69b4;
-    letter-spacing: 4px;
+    letter-spacing: 6px;
     position: relative;
     z-index: 1;
     text-shadow: 
+        0 0 5px #ff69b4,
         0 0 10px #ff69b4,
+        0 0 15px #ff69b4,
         0 0 20px #ff69b4,
-        0 0 30px #ff69b4,
-        3px 3px 0px #2d1b69,
-        6px 6px 0px #000000;
-    animation: glow 3s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 3px 3px 0px #2d1b69, 6px 6px 0px #000000; }
-    to { text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 3px 3px 0px #2d1b69, 6px 6px 0px #000000; }
+        3px 3px 0px #000000,
+        6px 6px 0px #2d1b69,
+        9px 9px 0px #8a2be2;
+    -webkit-text-stroke: 2px #000000;
+    transform: rotate(2deg);
 }
 
 header p {
-    font-family: 'Strange Magic', cursive;
-    font-size: 1.2rem;
-    color: #ff69b4;
+    font-family: 'Griffy', cursive;
+    font-size: 1.3rem;
+    color: #00ffff;
     font-style: italic;
     position: relative;
     z-index: 1;
     margin-top: 10px;
-    font-weight: normal;
-    text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+    font-weight: bold;
+    text-shadow: 
+        0 0 5px #00ffff,
+        2px 2px 0px #000000,
+        4px 4px 0px #2d1b69;
+    transform: rotate(-1deg);
 }
 
 main {
@@ -117,81 +135,96 @@ main {
 }
 
 .comic-container {
-    background: linear-gradient(135deg, #2d1b69, #1a0033);
-    border: 2px solid #ff69b4;
-    border-radius: 10px;
+    background: #2d1b69;
+    border: 4px solid #ff69b4;
+    border-style: double;
     overflow: hidden;
     margin: 15px;
     position: relative;
-    box-shadow: 0 0 30px rgba(255, 105, 180, 0.2);
+    box-shadow: 
+        0 0 0 2px #000000,
+        0 0 0 6px #8a2be2,
+        0 0 30px #ff69b4;
+    transform: rotate(0.5deg);
 }
 
 .comic-container::before {
-    content: '💀 CHICA MOB MYSTERIES 💀 🦇 DARK SECRETS 🦇 🕷️ GOTHIC TALES 🕷️ ⚰️ HAUNTED PAGES ⚰️ 🌙 MIDNIGHT STORIES 🌙 🔮 MYSTIC ADVENTURES 🔮 🏰 SHADOW REALM 🏰 🌹 THORNED MYSTERIES 🌹 ⚡ ELECTRIC DARKNESS ⚡ 🖤 DARK MAGIC 🖤 💜 PURPLE NIGHTMARES 💜 👻 GHOSTLY VISIONS 👻';
+    content: '🎪🎪🎪 COMIC ZONE 🎪🎪🎪 💀💀💀 MYSTERY PANEL 💀💀💀 🦇🦇🦇 DARK STORIES 🦇🦇🦇 ⚡⚡⚡ ELECTRIC TALES ⚡⚡⚡ 🌙🌙🌙 MIDNIGHT MAGIC 🌙🌙🌙 👻👻👻 GHOSTLY ADVENTURES 👻👻👻 🕷️🕷️🕷️ WEB OF MYSTERY 🕷️🕷️🕷️ ⚰️⚰️⚰️ COFFIN COMICS ⚰️⚰️⚰️';
     position: absolute;
     top: 5px;
     left: 5px;
     right: 5px;
     bottom: 5px;
-    font-size: 9px;
-    color: rgba(255, 105, 180, 0.05);
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.comic-header {
-    background: linear-gradient(45deg, #4a0e4e, #2d1b69);
-    padding: 1.5rem;
-    text-align: center;
-    border-bottom: 2px solid #ff69b4;
-    position: relative;
-    z-index: 1;
-}
-
-.comic-header h2 {
-    font-family: 'Tequila Sunrise', 'Creepster', cursive;
-    color: #ff69b4;
-    margin-bottom: 0.5rem;
-    font-size: 2.2rem;
-    text-shadow: 
-        0 0 10px #ff69b4,
-        2px 2px 0px #000000,
-        4px 4px 0px #2d1b69;
-}
-
-.comic-header p {
-    color: #ff69b4;
-    font-size: 1rem;
-    font-family: 'Strange Magic', cursive;
-    font-weight: normal;
-    opacity: 0.9;
-}
-
-.comic-panel {
-    padding: 2rem;
-    text-align: center;
-    background: linear-gradient(135deg, #1a0033, #000000);
-    position: relative;
-    z-index: 1;
-}
-
-.comic-panel::before {
-    content: '🌙 STORY PANEL 🌙 💀 DARK FRAME 💀 🦇 SHADOW BOX 🦇 🕷️ WEB BORDER 🕷️ ⚰️ MYSTERY FRAME ⚰️ 🔮 MYSTIC WINDOW 🔮 🏰 GOTHIC BORDER 🏰 🌹 THORNED EDGE 🌹 ⚡ ELECTRIC FRAME ⚡ 🖤 DARK CANVAS 🖤 💜 PURPLE VOID 💜 👻 GHOSTLY FRAME 👻';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    font-size: 10px;
-    color: rgba(255, 105, 180, 0.08);
+    font-size: 7px;
+    color: rgba(255, 105, 180, 0.1);
     word-wrap: break-word;
     white-space: pre-wrap;
     pointer-events: none;
     z-index: 0;
     border: 1px dashed rgba(255, 105, 180, 0.2);
-    padding: 10px;
+    padding: 3px;
+}
+
+.comic-header {
+    background: #8a2be2;
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid #ff69b4;
+    position: relative;
+    z-index: 1;
+}
+
+.comic-header h2 {
+    font-family: 'Metal Mania', 'Butcherman', cursive;
+    color: #00ffff;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    text-shadow: 
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        3px 3px 0px #000000,
+        6px 6px 0px #2d1b69;
+    -webkit-text-stroke: 1px #000000;
+    transform: rotate(-1deg);
+}
+
+.comic-header p {
+    color: #ff69b4;
+    font-size: 1.1rem;
+    font-family: 'Griffy', cursive;
+    font-weight: bold;
+    text-shadow: 
+        0 0 3px #ff69b4,
+        1px 1px 0px #000000;
+    transform: rotate(1deg);
+}
+
+.comic-panel {
+    padding: 2rem;
+    text-align: center;
+    background: #000000;
+    position: relative;
+    z-index: 1;
+    border: 3px solid #8a2be2;
+    border-style: dotted;
+    margin: 10px;
+}
+
+.comic-panel::before {
+    content: '✨✨✨ STORY TIME ✨✨✨ 💎💎💎 SPARKLE FRAME 💎💎💎 🌟🌟🌟 STAR BORDER 🌟🌟🌟 💫💫💫 MAGIC WINDOW 💫💫💫 🎨🎨🎨 ART CANVAS 🎨🎨🎨 🖌️🖌️🖌️ PAINT SPLASH 🖌️🖌️🖌️ ✏️✏️✏️ SKETCH PAD ✏️✏️✏️ 📝📝📝 STORY BOOK 📝📝📝';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    font-size: 8px;
+    color: rgba(138, 43, 226, 0.15);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    pointer-events: none;
+    z-index: 0;
+    border: 2px dashed rgba(138, 43, 226, 0.3);
+    padding: 5px;
 }
 
 .comic-panel img {
@@ -200,11 +233,14 @@ main {
     background: #000000;
     min-height: 500px;
     object-fit: contain;
-    border: 3px solid #ff69b4;
-    border-radius: 5px;
+    border: 5px solid #ff69b4;
+    border-style: double;
     position: relative;
     z-index: 1;
-    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    box-shadow: 
+        0 0 0 2px #000000,
+        0 0 0 7px #8a2be2,
+        0 0 20px #ff69b4;
 }
 
 .navigation {
@@ -212,146 +248,201 @@ main {
     justify-content: center;
     gap: 1rem;
     padding: 1.5rem;
-    background: linear-gradient(45deg, #2d1b69, #4a0e4e);
-    border-top: 2px solid #ff69b4;
+    background: #8a2be2;
+    border-top: 4px solid #ff69b4;
+    border-style: dashed;
     position: relative;
 }
 
 .navigation::before {
-    content: '🎮 DARK CONTROLS 🎮 ⬅️ SHADOW BACK ⬅️ ➡️ VOID FORWARD ➡️ 🏠 HAUNTED HOME 🏠 🎯 MYSTIC SELECT 🎯 🦇 BAT NAVIGATION 🦇 💀 SKULL BUTTONS 💀 🌙 MOON CONTROLS 🌙 ⚡ ELECTRIC CLICKS ⚡ 🔮 CRYSTAL BUTTONS 🔮 🖤 DARK MAGIC 🖤 💜 PURPLE POWER 💜';
+    content: '🎮🎮🎮 GAME CONTROLS 🎮🎮🎮 ⬅️⬅️⬅️ GO BACK ⬅️⬅️⬅️ ➡️➡️➡️ GO FORWARD ➡️➡️➡️ 🏠🏠🏠 HOME BASE 🏠🏠🏠 🎯🎯🎯 TARGET SELECT 🎯🎯🎯 💀💀💀 SKULL POWER 💀💀💀 🦇🦇🦇 BAT FLIGHT 🦇🦇🦇 ⚡⚡⚡ ELECTRIC CLICK ⚡⚡⚡';
     position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    font-size: 7px;
-    color: rgba(255, 105, 180, 0.08);
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    font-size: 6px;
+    color: rgba(255, 105, 180, 0.2);
     word-wrap: break-word;
     white-space: pre-wrap;
     pointer-events: none;
     z-index: 0;
+    border: 1px dotted rgba(255, 105, 180, 0.3);
+    padding: 2px;
 }
 
 .navigation button {
     padding: 1rem 1.5rem;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
-    background: linear-gradient(45deg, #1a0033, #2d1b69);
-    color: #ff69b4;
+    border: 3px solid #000000;
+    border-style: solid;
+    background: #ff69b4;
+    color: #000000;
     font-size: 1rem;
-    font-family: 'Strange Magic', cursive;
+    font-family: 'Nosifer', 'Creepster', cursive;
     cursor: pointer;
-    font-weight: normal;
+    font-weight: bold;
     position: relative;
     z-index: 1;
-    text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+    box-shadow: 
+        0 0 0 1px #ff69b4,
+        0 0 0 4px #000000,
+        0 0 10px #ff69b4;
+    transform: rotate(-2deg);
+}
+
+.navigation button:nth-child(1) {
+    background: #00ffff;
+    color: #000000;
+    transform: rotate(1deg);
+}
+
+.navigation button:nth-child(2) {
+    background: #ff1493;
+    color: #ffffff;
+    transform: rotate(-1deg);
+}
+
+.navigation button:nth-child(3) {
+    background: #8a2be2;
+    color: #ffffff;
+    transform: rotate(2deg);
 }
 
 .navigation button:hover {
-    background: linear-gradient(45deg, #ff69b4, #4a0e4e);
+    transform: rotate(0deg) scale(1.1);
+    background: #ffff00;
     color: #000000;
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
-    text-shadow: none;
+    box-shadow: 
+        0 0 0 1px #ffff00,
+        0 0 0 4px #000000,
+        0 0 20px #ffff00;
 }
 
 .navigation button:disabled {
-    background: linear-gradient(45deg, #333333, #555555);
-    color: #888888;
+    background: #666666;
+    color: #333333;
     cursor: not-allowed;
-    transform: none;
+    transform: rotate(0deg);
     opacity: 0.5;
-    box-shadow: none;
+    box-shadow: 
+        0 0 0 1px #666666,
+        0 0 0 4px #000000;
 }
 
 .page-picker {
     padding: 1.5rem;
     text-align: center;
-    background: linear-gradient(135deg, #4a0e4e, #1a0033);
-    border-top: 2px solid #ff69b4;
+    background: #2d1b69;
+    border-top: 3px solid #ff69b4;
+    border-style: dotted;
     position: relative;
 }
 
 .page-picker::before {
-    content: '📝 DARK PAGES 📝 🔢 SHADOW NUMBERS 🔢 🎯 MYSTIC JUMP 🎯 🦇 BAT LEAP 🦇 💀 SKULL PAGES 💀 🌙 MOON JUMP 🌙 ⚡ ELECTRIC PAGES ⚡ 🔮 CRYSTAL JUMP 🔮 🖤 DARK NAVIGATION 🖤 💜 PURPLE PORTAL 💜 👻 GHOSTLY JUMP 👻 🕷️ WEB CRAWLER 🕷️';
+    content: '📝📝📝 WRITE HERE 📝📝📝 🔢🔢🔢 NUMBER MAGIC 🔢🔢🔢 🎯🎯🎯 TARGET PAGE 🎯🎯🎯 🦇🦇🦇 BAT JUMP 🦇🦇🦇 💀💀💀 SKULL LEAP 💀💀💀 🌙🌙🌙 MOON JUMP 🌙🌙🌙 ⚡⚡⚡ ELECTRIC PAGES ⚡⚡⚡ 🔮🔮🔮 CRYSTAL JUMP 🔮🔮🔮';
     position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    font-size: 7px;
-    color: rgba(255, 105, 180, 0.08);
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    font-size: 6px;
+    color: rgba(255, 105, 180, 0.2);
     word-wrap: break-word;
     white-space: pre-wrap;
     pointer-events: none;
     z-index: 0;
+    border: 1px dashed rgba(255, 105, 180, 0.3);
+    padding: 2px;
 }
 
 .page-picker label {
     display: block;
     margin-bottom: 1rem;
-    font-weight: normal;
-    color: #ff69b4;
-    font-family: 'Strange Magic', cursive;
-    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00ffff;
+    font-family: 'Butcherman', cursive;
+    font-size: 1.4rem;
     position: relative;
     z-index: 1;
-    text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+    text-shadow: 
+        0 0 5px #00ffff,
+        2px 2px 0px #000000,
+        4px 4px 0px #8a2be2;
+    transform: rotate(-1deg);
 }
 
 .page-picker input {
     padding: 0.8rem;
-    border: 2px solid #ff69b4;
-    border-radius: 5px;
-    font-size: 1.2rem;
+    border: 4px solid #ff69b4;
+    border-style: double;
+    font-size: 1.3rem;
     background: #000000;
     color: #ff69b4;
-    font-family: 'Strange Magic', cursive;
+    font-family: 'Griffy', cursive;
     text-align: center;
-    font-weight: normal;
+    font-weight: bold;
     position: relative;
     z-index: 1;
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+    box-shadow: 
+        0 0 0 2px #000000,
+        0 0 0 6px #8a2be2,
+        0 0 10px #ff69b4;
+    transform: rotate(1deg);
 }
 
 .page-picker input:focus {
     outline: none;
-    border-color: #ff69b4;
-    background: #1a0033;
-    color: #ff69b4;
-    box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+    border-color: #00ffff;
+    background: #2d1b69;
+    color: #00ffff;
+    box-shadow: 
+        0 0 0 2px #000000,
+        0 0 0 6px #00ffff,
+        0 0 20px #00ffff;
+    transform: rotate(-1deg) scale(1.05);
 }
 
 footer {
     text-align: center;
     padding: 1.5rem;
     color: #ff69b4;
-    background: linear-gradient(45deg, #2d1b69, #1a0033);
+    background: #000000;
     margin: 15px;
-    border: 2px solid #ff69b4;
-    border-radius: 10px;
-    font-family: 'Strange Magic', cursive;
-    font-weight: normal;
-    box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
+    border: 3px solid #8a2be2;
+    border-style: dashed;
+    font-family: 'Griffy', cursive;
+    font-weight: bold;
+    box-shadow: 
+        0 0 0 2px #ff69b4,
+        0 0 15px #8a2be2;
+    transform: rotate(-0.5deg);
 }
 
 /* Mobile Responsive Design - Focus on Comic */
 @media (max-width: 768px) {
+    /* Remove background chaos on mobile for better readability */
+    body::before,
+    body::after {
+        display: none;
+    }
+    
     /* Smaller header on mobile */
     header {
         padding: 1rem 0.5rem;
         margin: 5px;
+        transform: rotate(0deg);
     }
     
     header h1 {
-        font-size: 2.2rem;
-        letter-spacing: 2px;
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+        transform: rotate(0deg);
     }
     
     header p {
-        font-size: 0.9rem;
+        font-size: 1rem;
+        transform: rotate(0deg);
     }
     
     /* Compact comic header */
@@ -360,12 +451,14 @@ footer {
     }
     
     .comic-header h2 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         margin-bottom: 0.3rem;
+        transform: rotate(0deg);
     }
     
     .comic-header p {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        transform: rotate(0deg);
     }
     
     /* Optimized navigation for mobile - Next button on top */
@@ -381,22 +474,27 @@ footer {
         max-width: 280px;
         padding: 0.8rem 1rem;
         font-size: 0.9rem;
+        transform: rotate(0deg);
     }
     
     /* Reorder buttons: Next first, then Previous, then Latest */
     .navigation button:nth-child(2) { /* Next button */
         order: 1;
-        background: linear-gradient(45deg, #ff69b4, #4a0e4e);
-        color: #000000;
+        background: #ff1493;
+        color: #ffffff;
         font-weight: bold;
     }
     
     .navigation button:nth-child(1) { /* Previous button */
         order: 2;
+        background: #00ffff;
+        color: #000000;
     }
     
     .navigation button:nth-child(3) { /* Latest button */
         order: 3;
+        background: #8a2be2;
+        color: #ffffff;
         font-size: 0.8rem;
         padding: 0.6rem 1rem;
     }
@@ -409,10 +507,12 @@ footer {
     
     .comic-container {
         margin: 8px;
+        transform: rotate(0deg);
     }
     
     .comic-panel {
         padding: 1rem;
+        margin: 5px;
     }
     
     .comic-panel img {
@@ -425,13 +525,19 @@ footer {
     }
     
     .page-picker label {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-bottom: 0.8rem;
+        transform: rotate(0deg);
     }
     
     .page-picker input {
         padding: 0.6rem;
         font-size: 1rem;
+        transform: rotate(0deg);
+    }
+    
+    .page-picker input:focus {
+        transform: scale(1.02);
     }
     
     /* Smaller footer */
@@ -439,17 +545,19 @@ footer {
         padding: 1rem;
         margin: 8px;
         font-size: 0.9rem;
+        transform: rotate(0deg);
     }
 }
 
 /* Extra small screens */
 @media (max-width: 480px) {
     header h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        letter-spacing: 2px;
     }
     
     .comic-header h2 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
     
     .navigation button {
@@ -473,32 +581,36 @@ footer {
     color: #ff69b4;
     text-align: center;
     padding: 2rem;
-    background: rgba(255, 105, 180, 0.1);
-    border: 2px solid #ff69b4;
-    border-radius: 10px;
+    background: #2d1b69;
+    border: 3px solid #ff69b4;
+    border-style: dashed;
     margin: 1rem 0;
-    font-family: 'Strange Magic', cursive;
-    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    font-family: 'Griffy', cursive;
+    box-shadow: 
+        0 0 0 2px #000000,
+        0 0 20px #ff69b4;
 }
 
-/* Gothic animations */
-@keyframes haunt {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-5px) rotate(1deg); }
-    75% { transform: translateY(5px) rotate(-1deg); }
+/* Static chaotic elements - no floating animations */
+.comic-container,
+header,
+footer {
+    /* Remove any floating animations for static feel */
 }
 
-.comic-container {
-    animation: haunt 8s ease-in-out infinite;
+/* Blingee-style sparkle effects */
+.navigation button:hover::before {
+    content: '✨💎✨';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 12px;
+    color: #ffff00;
+    animation: sparkle 0.5s ease-in-out;
 }
 
-/* Spooky hover effects */
-.navigation button:not(:disabled):hover {
-    animation: pulse 0.5s ease-in-out;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+@keyframes sparkle {
+    0% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(0); }
 }

@@ -23,7 +23,7 @@ body {
 
 /* Chaotic MySpace-style background */
 body::before {
-    content: '☠️💀🦇🕷️⚰️🔮🌙⭐👻🎭🗡️🏰🌹🥀⚡🔥💜🖤💎✨🌟💫⭐🎪🎨🖌️✏️📝🎯🎲🃏🎴💖💕💗💓💝🎀🎈🎉🎊🌈🦄🧚🍭🍬💀☠️🦇🕷️⚰️🔮🌙⭐👻🎭🗡️🏰🌹🥀⚡🔥💜🖤💎✨🌟💫⭐🎪🎨🖌️✏️📝🎯🎲🃏🎴💖💕💗💓💝🎀🎈🎉🎊🌈🦄🧚🍭🍬';
+    content: '~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~chica~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~';
     position: fixed;
     top: 0;
     left: 0;
@@ -41,7 +41,7 @@ body::before {
 
 /* Chaotic scattered elements */
 body::after {
-    content: '★ CHICA MOB ★ 💀 MYSTERIES 💀 🦇 GOTHIC 🦇 ⚡ CHAOS ⚡ 🌙 DARK 🌙 💜 PURPLE 💜 🖤 BLACK 🖤 💎 SPARKLE 💎 ✨ MAGIC ✨ 🔮 CRYSTAL 🔮 👻 GHOST 👻 🕷️ SPIDER 🕷️ ⚰️ COFFIN ⚰️ 🏰 CASTLE 🏰 🌹 ROSE 🌹 🗡️ SWORD 🗡️ 🎭 MASK 🎭';
+    content: '★the chica mob solves mysteries and defeats monsters and well.. learns about themself along the way. the chicas aren't perfect but they're powerful and their trying the best that they can<33';
     position: fixed;
     top: 20%;
     right: 10%;
@@ -76,7 +76,7 @@ header {
 }
 
 header::before {
-    content: '💀💀💀 WELCOME TO THE DARKNESS 💀💀💀 🦇🦇🦇 ENTER IF YOU DARE 🦇🦇🦇 ⚡⚡⚡ CHICA MOB RULES ⚡⚡⚡ 🌙🌙🌙 MIDNIGHT MYSTERIES 🌙🌙🌙 👻👻👻 GHOSTLY TALES 👻👻👻 🕷️🕷️🕷️ WEB OF SECRETS 🕷️🕷️🕷️';
+    content: 'welcome to the chica zone where you can read the chica mob quarterly which is a manga made by 6 chicas in new york city';
     position: absolute;
     top: 10px;
     left: 10px;
@@ -149,7 +149,7 @@ main {
 }
 
 .comic-container::before {
-    content: '🎪🎪🎪 COMIC ZONE 🎪🎪🎪 💀💀💀 MYSTERY PANEL 💀💀💀 🦇🦇🦇 DARK STORIES 🦇🦇🦇 ⚡⚡⚡ ELECTRIC TALES ⚡⚡⚡ 🌙🌙🌙 MIDNIGHT MAGIC 🌙🌙🌙 👻👻👻 GHOSTLY ADVENTURES 👻👻👻 🕷️🕷️🕷️ WEB OF MYSTERY 🕷️🕷️🕷️ ⚰️⚰️⚰️ COFFIN COMICS ⚰️⚰️⚰️';
+    content: 'it's giving art';
     position: absolute;
     top: 5px;
     left: 5px;
@@ -211,7 +211,7 @@ main {
 }
 
 .comic-panel::before {
-    content: '✨✨✨ STORY TIME ✨✨✨ 💎💎💎 SPARKLE FRAME 💎💎💎 🌟🌟🌟 STAR BORDER 🌟🌟🌟 💫💫💫 MAGIC WINDOW 💫💫💫 🎨🎨🎨 ART CANVAS 🎨🎨🎨 🖌️🖌️🖌️ PAINT SPLASH 🖌️🖌️🖌️ ✏️✏️✏️ SKETCH PAD ✏️✏️✏️ 📝📝📝 STORY BOOK 📝📝📝';
+    content: 'faq: what's a changa? it's a chica manga';
     position: absolute;
     top: 5px;
     left: 5px;
@@ -255,7 +255,7 @@ main {
 }
 
 .navigation::before {
-    content: '🎮🎮🎮 GAME CONTROLS 🎮🎮🎮 ⬅️⬅️⬅️ GO BACK ⬅️⬅️⬅️ ➡️➡️➡️ GO FORWARD ➡️➡️➡️ 🏠🏠🏠 HOME BASE 🏠🏠🏠 🎯🎯🎯 TARGET SELECT 🎯🎯🎯 💀💀💀 SKULL POWER 💀💀💀 🦇🦇🦇 BAT FLIGHT 🦇🦇🦇 ⚡⚡⚡ ELECTRIC CLICK ⚡⚡⚡';
+    content: 'chicas never die';
     position: absolute;
     top: 3px;
     left: 3px;
@@ -340,7 +340,7 @@ main {
 }
 
 .page-picker::before {
-    content: '📝📝📝 WRITE HERE 📝📝📝 🔢🔢🔢 NUMBER MAGIC 🔢🔢🔢 🎯🎯🎯 TARGET PAGE 🎯🎯🎯 🦇🦇🦇 BAT JUMP 🦇🦇🦇 💀💀💀 SKULL LEAP 💀💀💀 🌙🌙🌙 MOON JUMP 🌙🌙🌙 ⚡⚡⚡ ELECTRIC PAGES ⚡⚡⚡ 🔮🔮🔮 CRYSTAL JUMP 🔮🔮🔮';
+    content: 'welcome to all chicas. chicas rule opps drool...';
     position: absolute;
     top: 3px;
     left: 3px;
@@ -600,7 +600,7 @@ footer {
 
 /* Blingee-style sparkle effects */
 .navigation button:hover::before {
-    content: '✨💎✨';
+    content: 'chicas never die';
     position: absolute;
     top: -10px;
     right: -10px;

@@ -7,7 +7,8 @@ const comics = {
     2: {
         image: 'comics/changa2.png',
         date: '2025-10-02'
-    };
+    }
+};
 
 // Current page number
 let currentPage = null;

@@ -4,7 +4,7 @@
 /* Page */
 html, body { height: 100%; }
 body {
-  font-family: 'Griffy', 'Creepster', cursive;
+  font-family: 'Love Ya Like A Sister', cursive;
   line-height: 1.5;
   color: #111;
   background: #fff; /* plain white */
@@ -30,15 +30,15 @@ header h1 {
 }
 header p {
   margin-top: 0.5rem;
-  font-family: 'Griffy', cursive;
+  font-family: 'Love Ya Like A Sister', cursive;
   font-size: 1.125rem;
   color: #444;
 }
 
 /* Comic container */
 .comic-container {
-  background: #fff;          /* white focus area */
-  border: 1px solid #e6e6e6; /* subtle frame */
+  background: #fff;
+  border: 1px solid #e6e6e6;
   border-radius: 8px;
   overflow: hidden;
   margin: 1rem 0;
@@ -52,7 +52,7 @@ header p {
   background: #fff;
 }
 .comic-header h2 {
-  font-family: 'Metal Mania', 'Butcherman', cursive;
+  font-family: 'Londrina Shadow', cursive;
   font-size: 1.75rem;
   line-height: 1.2;
   color: #111;
@@ -60,7 +60,7 @@ header p {
   margin-bottom: 0.25rem;
 }
 .comic-header p {
-  font-family: 'Griffy', cursive;
+  font-family: 'Love Ya Like A Sister', cursive;
   font-size: 0.95rem;
   color: #666;
 }
@@ -75,7 +75,7 @@ header p {
   max-width: 100%;
   height: auto;
   object-fit: contain;
-  min-height: 420px; /* keeps the layout stable while loading */
+  min-height: 420px;
   background: #fff;
   border-radius: 4px;
   border: 1px solid #eee;
@@ -97,7 +97,7 @@ header p {
   color: #111;
   padding: 0.6rem 1rem;
   font-size: 0.95rem;
-  font-family: 'Nosifer', 'Creepster', cursive;
+  font-family: 'Love Ya Like A Sister', cursive;
   border-radius: 6px;
   cursor: pointer;
 }
@@ -117,7 +117,7 @@ header p {
   font-weight: 700;
   color: #111;
   font-size: 1rem;
-  font-family: 'Butcherman', cursive;
+  font-family: 'Londrina Shadow', cursive;
 }
 .page-picker input {
   padding: 0.6rem 0.8rem;
@@ -126,7 +126,7 @@ header p {
   font-size: 1rem;
   background: #fff;
   color: #111;
-  font-family: 'Griffy', cursive;
+  font-family: 'Love Ya Like A Sister', cursive;
   text-align: center;
   width: 140px;
 }
@@ -143,7 +143,7 @@ footer {
   color: #666;
   background: #fff;
   margin: 1rem 0;
-  font-family: 'Griffy', cursive;
+  font-family: 'Love Ya Like A Sister', cursive;
   border-top: 1px solid #e6e6e6;
 }
 
@@ -157,7 +157,7 @@ footer {
   border: 1px solid #ffd6d6;
   border-radius: 6px;
   margin: 1rem 0;
-  font-family: 'Griffy', cursive;
+  font-family: 'Love Ya Like A Sister', cursive;
 }
 
 /* Mobile tweaks */

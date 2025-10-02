@@ -1,616 +1,172 @@
-/* Import fonts - using available Google Fonts that match the vibe */
-@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Butcherman&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Griffy&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+/* Base reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Page */
+html, body { height: 100%; }
 body {
-    font-family: 'Griffy', 'Creepster', cursive;
-    line-height: 1.4;
-    color: #ff69b4;
-    background: #000000;
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
+  font-family: 'Griffy', 'Creepster', cursive;
+  line-height: 1.5;
+  color: #111;
+  background: #fff; /* plain white */
 }
 
-/* Chaotic MySpace-style background */
-body::before {
-    content: '~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~chica~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
-    color: rgba(255, 105, 180, 0.15);
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    pointer-events: none;
-    z-index: -1;
-    line-height: 1.2;
-    transform: rotate(-5deg);
-}
+/* Layout shell */
+main { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
 
-/* Chaotic scattered elements */
-body::after {
-    content: '★the chica mob solves mysteries and defeats monsters and well.. learns about themself along the way. the chicas aren't perfect but they're powerful and their trying the best that they can<33';
-    position: fixed;
-    top: 20%;
-    right: 10%;
-    width: 30%;
-    height: 60%;
-    font-size: 12px;
-    color: rgba(138, 43, 226, 0.2);
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    pointer-events: none;
-    z-index: -1;
-    line-height: 1.5;
-    transform: rotate(15deg);
-}
-
+/* Header: simple title + subtitle */
 header {
-    background: #2d1b69;
-    color: #ff69b4;
-    text-align: center;
-    padding: 2rem 1rem;
-    border: 5px solid #ff69b4;
-    border-style: dashed;
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
-    box-shadow: 
-        0 0 0 3px #000000,
-        0 0 0 6px #ff69b4,
-        0 0 20px #ff69b4,
-        inset 0 0 20px rgba(255, 105, 180, 0.3);
-    transform: rotate(-1deg);
+  background: #fff;
+  color: #111;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #e6e6e6;
 }
-
-header::before {
-    content: 'welcome to the chica zone where you can read the chica mob quarterly which is a manga made by 6 chicas in new york city';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    font-size: 8px;
-    color: rgba(255, 105, 180, 0.2);
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    pointer-events: none;
-    z-index: 0;
-    border: 2px dotted rgba(255, 105, 180, 0.3);
-    padding: 5px;
-}
-
 header h1 {
-    font-family: 'Metal Mania', 'Creepster', cursive;
-    font-size: 4rem;
-    margin-bottom: 0.5rem;
-    color: #ff69b4;
-    letter-spacing: 6px;
-    position: relative;
-    z-index: 1;
-    text-shadow: 
-        0 0 5px #ff69b4,
-        0 0 10px #ff69b4,
-        0 0 15px #ff69b4,
-        0 0 20px #ff69b4,
-        3px 3px 0px #000000,
-        6px 6px 0px #2d1b69,
-        9px 9px 0px #8a2be2;
-    -webkit-text-stroke: 2px #000000;
-    transform: rotate(2deg);
+  font-family: 'Metal Mania', 'Creepster', cursive;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  font-weight: 400; /* avoid fake bold on display fonts */
+  color: #111;
 }
-
 header p {
-    font-family: 'Griffy', cursive;
-    font-size: 1.3rem;
-    color: #00ffff;
-    font-style: italic;
-    position: relative;
-    z-index: 1;
-    margin-top: 10px;
-    font-weight: bold;
-    text-shadow: 
-        0 0 5px #00ffff,
-        2px 2px 0px #000000,
-        4px 4px 0px #2d1b69;
-    transform: rotate(-1deg);
+  margin-top: 0.5rem;
+  font-family: 'Griffy', cursive;
+  font-size: 1.125rem;
+  color: #444;
 }
 
-main {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
+/* Comic container */
 .comic-container {
-    background: #2d1b69;
-    border: 4px solid #ff69b4;
-    border-style: double;
-    overflow: hidden;
-    margin: 15px;
-    position: relative;
-    box-shadow: 
-        0 0 0 2px #000000,
-        0 0 0 6px #8a2be2,
-        0 0 30px #ff69b4;
-    transform: rotate(0.5deg);
+  background: #fff;          /* white focus area */
+  border: 1px solid #e6e6e6; /* subtle frame */
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1rem 0;
 }
 
-.comic-container::before {
-    content: 'it's giving art';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    font-size: 7px;
-    color: rgba(255, 105, 180, 0.1);
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    pointer-events: none;
-    z-index: 0;
-    border: 1px dashed rgba(255, 105, 180, 0.2);
-    padding: 3px;
-}
-
+/* Comic header (page number + date) */
 .comic-header {
-    background: #8a2be2;
-    padding: 1.5rem;
-    text-align: center;
-    border-bottom: 3px solid #ff69b4;
-    position: relative;
-    z-index: 1;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+  background: #fff;
 }
-
 .comic-header h2 {
-    font-family: 'Metal Mania', 'Butcherman', cursive;
-    color: #00ffff;
-    margin-bottom: 0.5rem;
-    font-size: 2.5rem;
-    text-shadow: 
-        0 0 5px #00ffff,
-        0 0 10px #00ffff,
-        3px 3px 0px #000000,
-        6px 6px 0px #2d1b69;
-    -webkit-text-stroke: 1px #000000;
-    transform: rotate(-1deg);
+  font-family: 'Metal Mania', 'Butcherman', cursive;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: #111;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
 }
-
 .comic-header p {
-    color: #ff69b4;
-    font-size: 1.1rem;
-    font-family: 'Griffy', cursive;
-    font-weight: bold;
-    text-shadow: 
-        0 0 3px #ff69b4,
-        1px 1px 0px #000000;
-    transform: rotate(1deg);
+  font-family: 'Griffy', cursive;
+  font-size: 0.95rem;
+  color: #666;
 }
 
+/* Comic image panel */
 .comic-panel {
-    padding: 2rem;
-    text-align: center;
-    background: #000000;
-    position: relative;
-    z-index: 1;
-    border: 3px solid #8a2be2;
-    border-style: dotted;
-    margin: 10px;
+  background: #fff;
+  padding: 1rem;
+  text-align: center;
 }
-
-.comic-panel::before {
-    content: 'faq: what's a changa? it's a chica manga';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    font-size: 8px;
-    color: rgba(138, 43, 226, 0.15);
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    pointer-events: none;
-    z-index: 0;
-    border: 2px dashed rgba(138, 43, 226, 0.3);
-    padding: 5px;
-}
-
 .comic-panel img {
-    max-width: 100%;
-    height: auto;
-    background: #000000;
-    min-height: 500px;
-    object-fit: contain;
-    border: 5px solid #ff69b4;
-    border-style: double;
-    position: relative;
-    z-index: 1;
-    box-shadow: 
-        0 0 0 2px #000000,
-        0 0 0 7px #8a2be2,
-        0 0 20px #ff69b4;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  min-height: 420px; /* keeps the layout stable while loading */
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #eee;
 }
 
+/* Navigation */
 .navigation {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: #8a2be2;
-    border-top: 4px solid #ff69b4;
-    border-style: dashed;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
 }
-
-.navigation::before {
-    content: 'chicas never die';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    right: 3px;
-    bottom: 3px;
-    font-size: 6px;
-    color: rgba(255, 105, 180, 0.2);
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    pointer-events: none;
-    z-index: 0;
-    border: 1px dotted rgba(255, 105, 180, 0.3);
-    padding: 2px;
-}
-
 .navigation button {
-    padding: 1rem 1.5rem;
-    border: 3px solid #000000;
-    border-style: solid;
-    background: #ff69b4;
-    color: #000000;
-    font-size: 1rem;
-    font-family: 'Nosifer', 'Creepster', cursive;
-    cursor: pointer;
-    font-weight: bold;
-    position: relative;
-    z-index: 1;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
-    box-shadow: 
-        0 0 0 1px #ff69b4,
-        0 0 0 4px #000000,
-        0 0 10px #ff69b4;
-    transform: rotate(-2deg);
+  appearance: none;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  color: #111;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-family: 'Nosifer', 'Creepster', cursive;
+  border-radius: 6px;
+  cursor: pointer;
 }
+.navigation button:hover { background: #f2f2f2; }
+.navigation button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-.navigation button:nth-child(1) {
-    background: #00ffff;
-    color: #000000;
-    transform: rotate(1deg);
-}
-
-.navigation button:nth-child(2) {
-    background: #ff1493;
-    color: #ffffff;
-    transform: rotate(-1deg);
-}
-
-.navigation button:nth-child(3) {
-    background: #8a2be2;
-    color: #ffffff;
-    transform: rotate(2deg);
-}
-
-.navigation button:hover {
-    transform: rotate(0deg) scale(1.1);
-    background: #ffff00;
-    color: #000000;
-    box-shadow: 
-        0 0 0 1px #ffff00,
-        0 0 0 4px #000000,
-        0 0 20px #ffff00;
-}
-
-.navigation button:disabled {
-    background: #666666;
-    color: #333333;
-    cursor: not-allowed;
-    transform: rotate(0deg);
-    opacity: 0.5;
-    box-shadow: 
-        0 0 0 1px #666666,
-        0 0 0 4px #000000;
-}
-
+/* Page picker */
 .page-picker {
-    padding: 1.5rem;
-    text-align: center;
-    background: #2d1b69;
-    border-top: 3px solid #ff69b4;
-    border-style: dotted;
-    position: relative;
+  padding: 1rem;
+  text-align: center;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
 }
-
-.page-picker::before {
-    content: 'welcome to all chicas. chicas rule opps drool...';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    right: 3px;
-    bottom: 3px;
-    font-size: 6px;
-    color: rgba(255, 105, 180, 0.2);
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    pointer-events: none;
-    z-index: 0;
-    border: 1px dashed rgba(255, 105, 180, 0.3);
-    padding: 2px;
-}
-
 .page-picker label {
-    display: block;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    color: #00ffff;
-    font-family: 'Butcherman', cursive;
-    font-size: 1.4rem;
-    position: relative;
-    z-index: 1;
-    text-shadow: 
-        0 0 5px #00ffff,
-        2px 2px 0px #000000,
-        4px 4px 0px #8a2be2;
-    transform: rotate(-1deg);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: #111;
+  font-size: 1rem;
+  font-family: 'Butcherman', cursive;
 }
-
 .page-picker input {
-    padding: 0.8rem;
-    border: 4px solid #ff69b4;
-    border-style: double;
-    font-size: 1.3rem;
-    background: #000000;
-    color: #ff69b4;
-    font-family: 'Griffy', cursive;
-    text-align: center;
-    font-weight: bold;
-    position: relative;
-    z-index: 1;
-    box-shadow: 
-        0 0 0 2px #000000,
-        0 0 0 6px #8a2be2,
-        0 0 10px #ff69b4;
-    transform: rotate(1deg);
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+  color: #111;
+  font-family: 'Griffy', cursive;
+  text-align: center;
+  width: 140px;
 }
-
 .page-picker input:focus {
-    outline: none;
-    border-color: #00ffff;
-    background: #2d1b69;
-    color: #00ffff;
-    box-shadow: 
-        0 0 0 2px #000000,
-        0 0 0 6px #00ffff,
-        0 0 20px #00ffff;
-    transform: rotate(-1deg) scale(1.05);
+  outline: none;
+  border-color: #bbb;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
 }
 
+/* Footer */
 footer {
-    text-align: center;
-    padding: 1.5rem;
-    color: #ff69b4;
-    background: #000000;
-    margin: 15px;
-    border: 3px solid #8a2be2;
-    border-style: dashed;
-    font-family: 'Griffy', cursive;
-    font-weight: bold;
-    box-shadow: 
-        0 0 0 2px #ff69b4,
-        0 0 15px #8a2be2;
-    transform: rotate(-0.5deg);
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+  background: #fff;
+  margin: 1rem 0;
+  font-family: 'Griffy', cursive;
+  border-top: 1px solid #e6e6e6;
 }
 
-/* Mobile Responsive Design - Focus on Comic */
-@media (max-width: 768px) {
-    /* Remove background chaos on mobile for better readability */
-    body::before,
-    body::after {
-        display: none;
-    }
-    
-    /* Smaller header on mobile */
-    header {
-        padding: 1rem 0.5rem;
-        margin: 5px;
-        transform: rotate(0deg);
-    }
-    
-    header h1 {
-        font-size: 2.5rem;
-        letter-spacing: 3px;
-        transform: rotate(0deg);
-    }
-    
-    header p {
-        font-size: 1rem;
-        transform: rotate(0deg);
-    }
-    
-    /* Compact comic header */
-    .comic-header {
-        padding: 1rem;
-    }
-    
-    .comic-header h2 {
-        font-size: 1.8rem;
-        margin-bottom: 0.3rem;
-        transform: rotate(0deg);
-    }
-    
-    .comic-header p {
-        font-size: 0.9rem;
-        transform: rotate(0deg);
-    }
-    
-    /* Optimized navigation for mobile - Next button on top */
-    .navigation {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.8rem;
-        padding: 1rem;
-    }
-    
-    .navigation button {
-        width: 100%;
-        max-width: 280px;
-        padding: 0.8rem 1rem;
-        font-size: 0.9rem;
-        transform: rotate(0deg);
-    }
-    
-    /* Reorder buttons: Next first, then Previous, then Latest */
-    .navigation button:nth-child(2) { /* Next button */
-        order: 1;
-        background: #ff1493;
-        color: #ffffff;
-        font-weight: bold;
-    }
-    
-    .navigation button:nth-child(1) { /* Previous button */
-        order: 2;
-        background: #00ffff;
-        color: #000000;
-    }
-    
-    .navigation button:nth-child(3) { /* Latest button */
-        order: 3;
-        background: #8a2be2;
-        color: #ffffff;
-        font-size: 0.8rem;
-        padding: 0.6rem 1rem;
-    }
-    
-    /* Smaller margins and padding */
-    main {
-        margin: 0.5rem auto;
-        padding: 0 0.3rem;
-    }
-    
-    .comic-container {
-        margin: 8px;
-        transform: rotate(0deg);
-    }
-    
-    .comic-panel {
-        padding: 1rem;
-        margin: 5px;
-    }
-    
-    .comic-panel img {
-        min-height: 350px;
-    }
-    
-    /* Compact page picker */
-    .page-picker {
-        padding: 1rem;
-    }
-    
-    .page-picker label {
-        font-size: 1.1rem;
-        margin-bottom: 0.8rem;
-        transform: rotate(0deg);
-    }
-    
-    .page-picker input {
-        padding: 0.6rem;
-        font-size: 1rem;
-        transform: rotate(0deg);
-    }
-    
-    .page-picker input:focus {
-        transform: scale(1.02);
-    }
-    
-    /* Smaller footer */
-    footer {
-        padding: 1rem;
-        margin: 8px;
-        font-size: 0.9rem;
-        transform: rotate(0deg);
-    }
-}
-
-/* Extra small screens */
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-    }
-    
-    .comic-header h2 {
-        font-size: 1.5rem;
-    }
-    
-    .navigation button {
-        max-width: 250px;
-        font-size: 0.85rem;
-    }
-    
-    .comic-panel img {
-        min-height: 300px;
-    }
-}
-
-/* Loading state */
-.loading {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-/* Error state */
+/* States */
+.loading { opacity: 0.6; pointer-events: none; }
 .error {
-    color: #ff69b4;
-    text-align: center;
-    padding: 2rem;
-    background: #2d1b69;
-    border: 3px solid #ff69b4;
-    border-style: dashed;
-    margin: 1rem 0;
-    font-family: 'Griffy', cursive;
-    box-shadow: 
-        0 0 0 2px #000000,
-        0 0 20px #ff69b4;
+  color: #b00020;
+  text-align: center;
+  padding: 1rem;
+  background: #fff5f5;
+  border: 1px solid #ffd6d6;
+  border-radius: 6px;
+  margin: 1rem 0;
+  font-family: 'Griffy', cursive;
 }
 
-/* Static chaotic elements - no floating animations */
-.comic-container,
-header,
-footer {
-    /* Remove any floating animations for static feel */
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  header { padding: 1.25rem 0.75rem; }
+  header h1 { font-size: 2.25rem; }
+  header p { font-size: 1rem; }
+  .comic-panel img { min-height: 300px; }
+  .navigation { flex-direction: column; }
+  .navigation button { width: 100%; max-width: 320px; }
 }
 
-/* Blingee-style sparkle effects */
-.navigation button:hover::before {
-    content: 'chicas never die';
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 12px;
-    color: #ffff00;
-    animation: sparkle 0.5s ease-in-out;
-}
-
-@keyframes sparkle {
-    0% { opacity: 0; transform: scale(0); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 0; transform: scale(0); }
-}

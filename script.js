@@ -1,7 +1,7 @@
 // Comic data structure - organized by page number
 const comics = {
     1: {
-        image: 'comics/changa1.pdf',
+        image: 'comics/changa1.png',
         date: '100125'
     },
     // Add more pages as you create them

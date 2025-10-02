@@ -5,16 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Archive — Chica Mob Quarterly</title>
 
-  <!-- Fonts (same as index) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
 
-  <!-- Base styles from your site -->
+  <!-- Base styles -->
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Archive-specific additions (kept minimal & matching your style) */
     .archive-container { margin: 2rem 0; }
     .archive-grid {
       display: grid;
@@ -37,11 +36,7 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 14px rgba(0,0,0,.06);
     }
-    .archive-thumb {
-      background: #fff;
-      padding: 8px;
-      border-bottom: 1px solid #f0f0f0;
-    }
+    .archive-thumb { background: #fff; padding: 8px; border-bottom: 1px solid #f0f0f0; }
     .archive-thumb img {
       width: 100%;
       height: 280px;
@@ -50,10 +45,7 @@
       border: 1px solid #eee;
       border-radius: 4px;
     }
-    .archive-meta {
-      padding: 10px 12px 12px;
-      background: #fff;
-    }
+    .archive-meta { padding: 10px 12px 12px; }
     .archive-meta h3 {
       font-family: 'Londrina Shadow', cursive;
       font-size: 1.25rem;
@@ -72,51 +64,28 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Archive</h1>
-    <p>All pages in order</p>
-  </header>
 
   <main>
-    <section class="comic-container archive-container">
-      <div class="comic-header">
-        <h2>All Posts</h2>
-        <p>Browse every page of Chica Mob Quarterly</p>
-      </div>
-      <div id="archive-grid" class="archive-grid" aria-live="polite"></div>
-    </section>
-
-    <section class="comic-container">
-      <div class="comic-panel" style="text-align:center;">
-        <a href="/" style="text-decoration:none;border:1px solid #ddd;border-radius:6px;padding:.6rem 1rem;background:#fafafa;color:#111;display:inline-block;">
-          ← Back to Reader
-        </a>
-      </div>
-    </section>
+    <div id="archive-grid" class="archive-grid" aria-live="polite"></div>
   </main>
 
   <footer>
     © <span id="year"></span> Chica Mob Quarterly
   </footer>
 
-  <!-- Load your existing data & helpers (comics, formatDateToDisplay, createPlaceholderImage, etc.) -->
   <script src="script.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Change this if your reader lives at a subpath (e.g., '/chica/')
-    const READER_ROOT = '/'; // so links go to '/#<page>'
+    const READER_ROOT = '/'; // change if your reader lives elsewhere
 
     function buildArchive() {
       const grid = document.getElementById('archive-grid');
       if (!grid || typeof comics !== 'object') return;
 
-      // Numeric ascending (1 → N). For newest-first, swap comparator to (b - a).
       const pages = Object.keys(comics).map(Number).sort((a, b) => a - b);
-
       const frag = document.createDocumentFragment();
 
-      pages.forEach((num) => {
+      pages.forEach(num => {
         const c = comics[num] || {};
         const a = document.createElement('a');
         a.className = 'archive-card';
@@ -131,35 +100,18 @@
         img.alt = 'Page ' + num;
         img.src = c.image || '';
         img.onerror = function() {
-          try {
-            if (typeof createPlaceholderImage === 'function') {
-              this.src = createPlaceholderImage();
-            } else {
-              // ultra-minimal fallback if helper isn't available
-              this.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(
-                `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
-                   <rect width="100%" height="100%" fill="#fff"/>
-                   <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="18" fill="#666" text-anchor="middle" dominant-baseline="middle">
-                     Image not available (Page ${num})
-                   </text>
-                 </svg>`
-              );
-            }
-          } catch (e) {}
+          if (typeof createPlaceholderImage === 'function') {
+            this.src = createPlaceholderImage();
+          }
         };
-
         thumb.appendChild(img);
 
         const meta = document.createElement('div');
         meta.className = 'archive-meta';
-
         const h3 = document.createElement('h3');
         h3.textContent = 'Page ' + num;
-
         const p = document.createElement('p');
-        const dateStr = c.date ? (typeof formatDateToDisplay === 'function' ? formatDateToDisplay(c.date) : c.date) : 'Unknown Date';
-        p.textContent = dateStr;
-
+        p.textContent = c.date ? (typeof formatDateToDisplay === 'function' ? formatDateToDisplay(c.date) : c.date) : 'Unknown Date';
         meta.appendChild(h3);
         meta.appendChild(p);
 
@@ -171,8 +123,8 @@
       grid.appendChild(frag);
     }
 
-    // Build when DOM + script.js are ready
     document.addEventListener('DOMContentLoaded', buildArchive);
   </script>
 </body>
 </html>
+

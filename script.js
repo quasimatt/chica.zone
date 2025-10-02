@@ -53,18 +53,39 @@ function formatDateToDisplay(dateStr) {
     if (!dateStr) return 'Unknown Date';
     
     try {
-        const date = new Date(dateStr);
-        // Check if date is valid
-        if (isNaN(date.getTime())) {
-            return 'Unknown Date';
+        // Parse the date string and create a date in local timezone to avoid UTC offset issues
+        const parts = dateStr.split('-');
+        if (parts.length === 3) {
+            const year = parseInt(parts[0]);
+            const month = parseInt(parts[1]) - 1; // Month is 0-indexed in JavaScript
+            const day = parseInt(parts[2]);
+            const date = new Date(year, month, day);
+            
+            // Check if date is valid
+            if (isNaN(date.getTime())) {
+                return 'Unknown Date';
+            }
+            
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        } else {
+            // Fallback for other date formats
+            const date = new Date(dateStr);
+            if (isNaN(date.getTime())) {
+                return 'Unknown Date';
+            }
+            
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
         }
-        
-        return date.toLocaleDateString('en-US', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        });
     } catch (error) {
         console.error('Error formatting date:', error);
         return 'Unknown Date';
@@ -320,6 +341,11 @@ function preloadImages() {
         img.src = comic.image;
     });
 }
+
+// Preload images after initial load
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(preloadImages, 1000);
+});
 
 // Preload images after initial load
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://pbs.twimg.com/media/GgfnQ1UXgAAcfpb?format=jpg&name=small" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chica Mob Quarterly - Webcomic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Griffy:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  
+    <header>
+        <h1>CHICA MOB QUARTERLY</h1>
+        <p>the legendary adventures of the mysteries of the chica mob</p>
+    </header>
+
+    <main>
+        <div class="comic-container">
+            <div class="comic-header">
+                <h2 id="comic-title">Welcome to the Chica Mob!</h2>
+                <p id="comic-info">Page <span id="page-number">1</span> • <span id="comic-date">Select a page to view</span></p>
+            </div>
+            
+            <div class="comic-panel">
+                <img id="comic-image" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIiBzdHJva2U9IiNkZWUyZTYiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNDAlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2Yzc1N2QiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNvbWljIENvbWluZyBTb29uITwvdGV4dD4KICA8dGV4dCB4PSI1MCUiIHk9IjYwJSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTY5YmE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5VcGxvYWQgeW91ciBjb21pYyBpbWFnZXMgdG8gdGhlICdjb21pY3MnIGZvbGRlcjwvdGV4dD4KPC9zdmc+" alt="Comic panel" />
+            </div>
+            
+            <div class="navigation">
+                <button id="prev-btn" onclick="navigateComic('prev')">← Previous Page</button>
+                <button id="latest-btn" onclick="goToLatest()">Latest</button>
+                <button id="next-btn" onclick="navigateComic('next')">Next Page →</button>
+            </div>
+            
+            <div class="page-picker">
+                <label for="page-input">Jump to page:</label>
+                <input type="number" id="page-input" min="1" onchange="goToPage(this.value)" placeholder="Page #">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CHICA MOB QUARTERLY - mysteries unfold daily!</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
-

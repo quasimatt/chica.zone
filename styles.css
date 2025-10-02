@@ -1,0 +1,410 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Griffy', cursive;
+    line-height: 1.4;
+    color: #2d1b69;
+    background: #ffeaa7;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Chaotic doodle background */
+body::before {
+    content: '★ ♥ ☆ ♦ ✿ ❀ ✦ ✧ ♠ ♣ ♪ ♫ ☀ ☁ ⚡ ❤ ♡ ☽ ☾ ✨ 💫 🌟 ⭐ 💖 💕 💗 💓 💝 🎀 🎈 🎉 🎊 🌈 🦄 🧚 🍭 🍬 🎨 ✏️ 📝 📚 📖 🖍️ ✂️ 📎 📌 🎯 🎪 🎭 🎨 🖌️ 🖊️ ✒️ 🖋️ ✏️ 📏 📐 🔍 🔎 💡 🔮 🎲 🃏 🎴 🀄 🎯 🎪 🎭 🎨 🖌️ 🖊️ ✒️ 🖋️ ✏️ 📏 📐 🔍 🔎 💡 🔮 🎲 🃏 🎴 🀄';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    font-size: 20px;
+    color: rgba(255, 68, 87, 0.1);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    pointer-events: none;
+    z-index: -1;
+    animation: float 20s linear infinite;
+    transform: rotate(-15deg);
+}
+
+@keyframes float {
+    0% { transform: rotate(-15deg) translateX(-10%); }
+    100% { transform: rotate(-15deg) translateX(-20%); }
+}
+
+header {
+    background: #ff4757;
+    color: #2d1b69;
+    text-align: center;
+    padding: 2rem 1rem;
+    border: 5px solid #2d1b69;
+    border-style: dashed;
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    transform: rotate(-1deg);
+}
+
+header::before {
+    content: '✨ SUPER SECRET DIARY ✨ 💖 DO NOT READ!!! 💖 ⭐ CHICA MOB RULES ⭐ 🌈 BEST FRIENDS 4EVER 🌈 💕 MYSTERIES & MAGIC 💕 ✏️ DOODLES EVERYWHERE ✏️ 🎨 ART CLASS ROCKS 🎨 📚 HOMEWORK SUCKS 📚 🍭 CANDY POWER 🍭 🦄 UNICORNS ARE REAL 🦄 🎪 CIRCUS DREAMS 🎪 🌟 SHOOTING STARS 🌟 💫 WISHES COME TRUE 💫';
+    position: absolute;
+    top: -20px;
+    left: -50px;
+    right: -50px;
+    bottom: -20px;
+    font-size: 12px;
+    color: rgba(45, 27, 105, 0.15);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    pointer-events: none;
+    z-index: 0;
+    animation: wiggle 3s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+}
+
+header h1 {
+    font-family: 'Creepster', cursive;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #2d1b69;
+    letter-spacing: 3px;
+    transform: rotate(2deg);
+    position: relative;
+    z-index: 1;
+    text-shadow: 
+        3px 3px 0px #ff4757,
+        6px 6px 0px #00dddd,
+        9px 9px 0px #fd79a8,
+        0 0 20px rgba(255, 71, 87, 0.8);
+    -webkit-text-stroke: 2px #2d1b69;
+}
+
+header p {
+    font-family: 'Griffy', cursive;
+    font-size: 1.1rem;
+    color: #2d1b69;
+    font-style: italic;
+    transform: rotate(-1deg);
+    position: relative;
+    z-index: 1;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.comic-container {
+    background: #74b9ff;
+    border: 4px solid #2d1b69;
+    border-style: dotted;
+    overflow: hidden;
+    margin: 15px;
+    transform: rotate(1deg);
+    position: relative;
+}
+
+.comic-container::before {
+    content: '💖 CHICA MOB 4EVER 💖 ⭐ BEST COMIC EVER ⭐ 🌈 RAINBOW POWER 🌈 ✨ MAGIC EVERYWHERE ✨ 🦄 UNICORN DREAMS 🦄 🍭 SUGAR RUSH 🍭 🎨 CRAYON ART 🎨 📝 SECRET NOTES 📝 💕 FRIENDSHIP RULES 💕 🎪 CIRCUS FUN 🎪 🌟 STAR WISHES 🌟 💫 SPARKLE TIME 💫';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    font-size: 10px;
+    color: rgba(45, 27, 105, 0.1);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.comic-header {
+    background: #fd79a8;
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 3px dashed #2d1b69;
+    position: relative;
+    z-index: 1;
+}
+
+.comic-header h2 {
+    font-family: 'Butcherman', cursive;
+    color: #2d1b69;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    transform: rotate(-2deg);
+    text-shadow: 
+        2px 2px 0px #00dddd,
+        4px 4px 0px #ff4757,
+        0 0 15px rgba(255, 71, 87, 0.6);
+    -webkit-text-stroke: 1px #2d1b69;
+}
+
+.comic-header p {
+    color: #2d1b69;
+    font-size: 1rem;
+    font-family: 'Griffy', cursive;
+    transform: rotate(1deg);
+    font-weight: bold;
+}
+
+.comic-panel {
+    padding: 2rem;
+    text-align: center;
+    background: #a29bfe;
+    position: relative;
+    z-index: 1;
+}
+
+.comic-panel::before {
+    content: '🎨 DOODLE ZONE 🎨 ✏️ SKETCH PAD ✏️ 🖍️ CRAYON TIME 🖍️ 📚 STORY BOOK 📚 ✨ MAGIC PAGES ✨ 🌈 COLOR SPLASH 🌈 💖 HEART DOODLES 💖 ⭐ STAR POWER ⭐ 🦄 UNICORN MAGIC 🦄 🍭 CANDY DREAMS 🍭';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+    color: rgba(45, 27, 105, 0.15);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    pointer-events: none;
+    z-index: 0;
+    border: 3px dashed #2d1b69;
+    padding: 10px;
+}
+
+.comic-panel img {
+    max-width: 100%;
+    height: auto;
+    background: #ffeaa7;
+    min-height: 500px;
+    object-fit: contain;
+    border: 5px solid #2d1b69;
+    border-style: double;
+    transform: rotate(-1deg);
+    position: relative;
+    z-index: 1;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #55efc4;
+    border-top: 4px dashed #2d1b69;
+    position: relative;
+}
+
+.navigation::before {
+    content: '🎮 GAME CONTROLS 🎮 ⬅️ GO BACK ➡️ GO FORWARD 🏠 HOME BASE 🎯 LEVEL SELECT 🎪 FUN ZONE 🎨 BUTTON MASH 🌟 POWER UP 💫 MAGIC BUTTONS 💖 CLICK ME 💕 PRESS HERE 🎈 POP POP 🎉 PARTY TIME 🎊 CELEBRATION 🍭 SWEET CLICKS 🦄 UNICORN POWER';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    font-size: 8px;
+    color: rgba(45, 27, 105, 0.1);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.navigation button {
+    padding: 1rem 1.5rem;
+    border: 3px solid #2d1b69;
+    border-style: solid;
+    background: #ff7675;
+    color: #2d1b69;
+    font-size: 1rem;
+    font-family: 'Nosifer', cursive;
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+}
+
+.navigation button:nth-child(1) {
+    transform: rotate(-3deg);
+    background: #fd79a8;
+}
+
+.navigation button:nth-child(2) {
+    transform: rotate(2deg);
+    background: #fdcb6e;
+}
+
+.navigation button:nth-child(3) {
+    transform: rotate(-1deg);
+    background: #6c5ce7;
+    color: #ffeaa7;
+}
+
+.navigation button:hover {
+    transform: rotate(0deg) scale(1.1);
+    background: #00b894;
+    color: #ffeaa7;
+}
+
+.navigation button:disabled {
+    background: #ddd;
+    color: #999;
+    cursor: not-allowed;
+    transform: rotate(0deg);
+    opacity: 0.6;
+}
+
+.page-picker {
+    padding: 1.5rem;
+    text-align: center;
+    background: #e17055;
+    border-top: 3px dotted #2d1b69;
+    position: relative;
+}
+
+.page-picker::before {
+    content: '📝 WRITE HERE 📝 ✏️ PENCIL TIME ✏️ 🖍️ CRAYON BOX 🖍️ 📚 PAGE TURNER 📚 🔢 NUMBER GAME 🔢 🎯 TARGET PAGE 🎯 🎪 JUMP AROUND 🎪 🌈 RAINBOW PAGES 🌈 ⭐ STAR JUMPER ⭐ 💫 PAGE MAGIC 💫 🦄 UNICORN JUMP 🦄 🍭 SWEET PAGES 🍭';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    font-size: 8px;
+    color: rgba(45, 27, 105, 0.1);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.page-picker label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #2d1b69;
+    font-family: 'Butcherman', cursive;
+    font-size: 1.3rem;
+    transform: rotate(-1deg);
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 8px rgba(255, 71, 87, 0.4);
+}
+
+.page-picker input {
+    padding: 0.8rem;
+    border: 4px solid #2d1b69;
+    border-style: double;
+    font-size: 1.2rem;
+    background: #ffeaa7;
+    color: #2d1b69;
+    font-family: 'Griffy', cursive;
+    text-align: center;
+    font-weight: bold;
+    transform: rotate(1deg);
+    position: relative;
+    z-index: 1;
+}
+
+.page-picker input:focus {
+    outline: none;
+    border-color: #ff4757;
+    background: #74b9ff;
+    color: #2d1b69;
+    transform: rotate(-1deg) scale(1.05);
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: #2d1b69;
+    background: #81ecec;
+    margin: 15px;
+    border: 3px solid #2d1b69;
+    border-style: wavy;
+    font-family: 'Griffy', cursive;
+    transform: rotate(-0.5deg);
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    header p {
+        font-size: 1rem;
+    }
+    
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .navigation button {
+        width: 250px;
+        transform: none;
+    }
+    
+    .navigation button:hover {
+        transform: scale(1.02);
+    }
+    
+    main {
+        margin: 1rem auto;
+        padding: 0 0.5rem;
+    }
+    
+    .comic-panel {
+        padding: 1rem;
+    }
+    
+    .comic-panel img {
+        min-height: 400px;
+    }
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Error state */
+.error {
+    color: #ff4457;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 68, 87, 0.1);
+    border: 2px solid #ff4457;
+    border-radius: 10px;
+    margin: 1rem 0;
+    font-family: 'Butcherman', cursive;
+}
+
+/* Whimsical animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.comic-container {
+    animation: float 6s ease-in-out infinite;
+}

@@ -4,9 +4,10 @@ const comics = {
         image: 'comics/changa1.png', // Change to .png when you convert the PDF
         date: '2025-10-01' // Proper date format (change to actual date)
     }
-    // Add more pages as you create them
-    // 2: { image: 'comics/page002.png', date: '2025-10-02' }
-};
+    2: {
+        image: 'comics/changa2.png',
+        date: '2025-10-02'
+    };
 
 // Current page number
 let currentPage = null;

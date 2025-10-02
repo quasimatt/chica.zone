@@ -41,10 +41,11 @@ function initializePage() {
         }
     }
     
-    // Default to page 1 if no page specified
+    // Default to the most recent available page if no page specified
     if (!pageNum || pageNum < 1) {
-        pageNum = 1;
+        pageNum = getLatestAvailablePage();
     }
+
     
     currentPage = pageNum;
     loadComic(currentPage);

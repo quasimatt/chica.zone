@@ -22,23 +22,13 @@ header {
   border-bottom: 1px solid #e6e6e6;
 }
 header h1 {
-  font-family: 'Londrina Shadow', cursive;
+  font-family: 'Londrina Solid', cursive;
   font-size: 3rem;
   letter-spacing: 2px;
   font-weight: 400;
   color: #111; /* outline stays black */
   position: relative;
   display: inline-block;
-}
-
-header h1::before {
-  content: "CHICA MOB QUARTERLY"; /* same text */
-  font-family: 'Londrina Solid', cursive; /* the filled version */
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #ff69b4; /* pink fill */
-  z-index: -1;
 }
 header p {
   margin-top: 0.5rem;

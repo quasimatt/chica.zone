@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — Chica Mob Quarterly</title>
+
+  <!-- Google Fonts (same set as before) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Butcherman&family=Creepster&family=Griffy&family=Metal+Mania&family=Nosifer&display=swap" rel="stylesheet">
+
+  <!-- Minimal CSS from earlier -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Chica Mob Quarterly</h1>
+    <p>A literary manga project by six friends in New York City</p>
+  </header>
+
+  <main>
+    <!-- About block reusing your existing card styles -->
+    <section class="comic-container">
+      <div class="comic-header">
+        <h2>About</h2>
+        <p>Who we are</p>
+      </div>
+      <div class="comic-panel" style="text-align:left; max-width:800px; margin:0 auto;">
+        <p style="font-family: 'Griffy', cursive; font-size:1.05rem; line-height:1.7;">
+          <strong>Chica Mob Quarterly</strong> is a literary manga project created and maintained by six friends that live in New York City:
+          <a href="https://x.com/_casscore" target="_blank" rel="noopener">cass</a>,
+          <a href="https://x.com/blissposting" target="_blank" rel="noopener">david</a>,
+          <a href="https://x.com/f4eth" target="_blank" rel="noopener">kathy</a>,
+          <a href="https://x.com/moralfagging" target="_blank" rel="noopener">lee</a>,
+          <a href="https://x.com/afflictedgirl" target="_blank" rel="noopener">maisy</a>,
+          and <a href="https://x.com/quasimatt" target="_blank" rel="noopener">quasimatt</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ block -->
+    <section class="comic-container">
+      <div class="comic-header">
+        <h2>FAQ</h2>
+        <p>Answers to common questions</p>
+      </div>
+      <div class="comic-panel" style="text-align:left; max-width:800px; margin:0 auto;">
+        <details open style="margin-bottom:1rem;">
+          <summary style="font-family:'Butcherman', cursive; font-size:1.2rem; cursor:pointer;">
+            What is Changa?
+          </summary>
+          <div style="margin-top:0.6rem; font-family:'Griffy', cursive; font-size:1.05rem; line-height:1.7;">
+            <p><strong>Changa</strong> is a form of manga. When a group of six friends, called chicas, come together and use the power of their friendship to draw manga, “Changa” occurs. This is because it is a creative mixture of the words “Chica” and “Manga.”</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Simple back link (optional) -->
+    <section class="comic-container">
+      <div class="comic-panel" style="text-align:center;">
+        <a href="./" style="font-family:'Nosifer','Creepster',cursive; text-decoration:none; border:1px solid #ddd; border-radius:6px; padding:0.6rem 1rem; background:#fafafa; color:#111; display:inline-block;">
+          ← Back to Comics
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Chica Mob Quarterly
+  </footer>
+
+  <script>
+    // tiny helper to keep the footer current
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

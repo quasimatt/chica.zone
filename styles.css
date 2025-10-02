@@ -169,4 +169,56 @@ footer {
   .navigation { flex-direction: column; }
   .navigation button { width: 100%; max-width: 320px; }
 }
+/* --- Bottom scrolling ticker --- */
+.ticker {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: 40px;               /* thin banner */
+  background: #fff;
+  border-top: 1px solid #e6e6e6;
+  overflow: hidden;
+  z-index: 9999;
+  display: block;
+}
+
+.ticker__track {
+  display: flex;
+  width: max-content;
+  gap: 4rem;                   /* space between repeats */
+  will-change: transform;
+  animation: ticker-scroll 35s linear infinite;
+}
+
+.ticker__item {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0 2rem;
+  line-height: 40px;          /* vertically center text */
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 0.95rem;
+  color: #111;
+}
+
+.ticker a {
+  color: #111;
+  text-decoration: underline;
+}
+
+.ticker:hover .ticker__track {   /* pause on hover */
+  animation-play-state: paused;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* because we duplicated content */
+}
+
+/* Give the page bottom padding so the ticker doesn't cover content */
+main { padding-bottom: 56px; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track { animation: none; }
+}
+
 

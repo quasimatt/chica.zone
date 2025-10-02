@@ -1,18 +1,9 @@
 // Comic data structure - organized by page number
 const comics = {
-    // Format: pageNumber: { title: 'Title', image: 'path/to/image.png', alt: 'Alt text', date: 'YYYY-MM-DD' }
     1: {
-        title: 'The Beginning',
         image: 'comics/page001.png',
-        alt: 'First page of the Chica Mob mysteries',
-        date: '2024-09-29'
+        date: '100125'
     },
-    2: {
-        title: 'Day Two',
-        image: 'comics/page002.png',
-        alt: 'Second page continuing the mysterious adventure',
-        date: '2024-09-30'
-    }
     // Add more pages as you create them
 };
 

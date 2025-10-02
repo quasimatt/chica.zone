@@ -346,8 +346,3 @@ function preloadImages() {
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(preloadImages, 1000);
 });
-
-// Preload images after initial load
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(preloadImages, 1000);
-});

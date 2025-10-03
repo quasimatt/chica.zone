@@ -65,6 +65,21 @@ let currentPage = null;
  * 3) INITIAL PAGE LOADING
  **************************/
 document.addEventListener('DOMContentLoaded', function () {
+  for (const ch of text) {
+  const span = document.createElement("span");
+  const isSpace = ch === " ";
+
+  // preserve visible spacing
+  span.textContent = isSpace ? "\u00A0" : ch;
+
+  // only color non-space characters
+  if (!isSpace) {
+    span.style.color = palette[Math.floor(Math.random() * palette.length)];
+  }
+
+  frag.appendChild(span);
+}
+
   // Make sure the header is colored AFTER the DOM exists
   colorizeHeaderOnce();
 

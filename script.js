@@ -1,3 +1,16 @@
+/*********************************
+ * 2) COMIC VIEWER CONFIG & STATE
+ *********************************/
+// Comic data structure - simplified: page number, date, and image
+const comics = {
+  1: { image: 'comics/changa1.png', date: '2025-10-01' },
+  2: { image: 'comics/changa2.png', date: '2025-10-02' },
+  3: { image: 'comics/changa3.png', date: '2025-10-03' }
+};
+
+// Current page number
+let currentPage = null;
+
 /***********************
  * 1) RANDOMIZED HEADER
  ***********************/
@@ -35,26 +48,6 @@ function colorizeHeaderOnce() {
   target.appendChild(frag);
   target.dataset.colored = "true";
 }
-
-
-/*********************************
- * 2) COMIC VIEWER CONFIG & STATE
- *********************************/
-// Comic data structure - simplified: page number, date, and image
-const comics = {
-  1: {
-    image: 'comics/changa1.png', // Change to .png when you convert the PDF
-    date: '2025-10-01' // Proper date format (change to actual date)
-  },
-  2: {
-    image: 'comics/changa2.png',
-    date: '2025-10-02'
-  }
-  // 3: { image: 'comics/changa3.png', date: '2025-10-03' }
-};
-
-// Current page number
-let currentPage = null;
 
 /**************************
  * 3) INITIAL PAGE LOADING

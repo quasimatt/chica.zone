@@ -23,7 +23,7 @@ function colorizeHeaderOnce() {
   if (target.dataset.colored === "true") return;
 
   const palette = [
-    "pink", "skyblue", "limegreen", "gold", "violet",
+    "hotpink", "skyblue", "limegreen", "gold", "violet",
     "tomato", "orange", "turquoise", "orchid", "lightcoral"
   ];
 

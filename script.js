@@ -1,3 +1,20 @@
+const colors = [
+    "pink", "skyblue", "limegreen", "gold", "violet",
+    "tomato", "orange", "turquoise", "orchid", "lightcoral"
+  ];
+
+  const text = document.getElementById("rainbow-text");
+  const letters = text.textContent.split("");
+  text.textContent = ""; // clear original text
+
+  letters.forEach(char => {
+    const span = document.createElement("span");
+    span.textContent = char;
+    if (char.trim() !== "") {
+      span.style.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+    text.appendChild(span);
+  });
 // Comic data structure - simplified: page number, date, and image
 const comics = {
     1: {

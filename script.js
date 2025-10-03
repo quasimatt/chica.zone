@@ -7,31 +7,25 @@ function colorizeHeaderOnce() {
     console.warn('[rainbow-text] No element found with id="rainbow-text".');
     return;
   }
-
-  // Prevent double-wrapping if something re-runs this
   if (target.dataset.colored === "true") return;
-
-  // Keep the original text if we ever need it again
-  if (!target.dataset.originalText) {
-    target.dataset.originalText = target.textContent;
-  }
 
   const palette = [
     "pink", "skyblue", "limegreen", "gold", "violet",
     "tomato", "orange", "turquoise", "orchid", "lightcoral"
   ];
 
-  const text = target.dataset.originalText;
-  if (!text || text.trim() === "") {
-    console.warn("[rainbow-text] Target has no text to color.");
-    return;
-  }
+  // Keep the original text once
+  const original = target.dataset.originalText || target.textContent;
+  target.dataset.originalText = original;
 
   const frag = document.createDocumentFragment();
-  for (const ch of text) {
+  for (const ch of original) {
     const span = document.createElement("span");
-    span.textContent = ch;
-    if (ch.trim() !== "") {
+    const isSpace = ch === " ";
+    // preserve visible spacing
+    span.textContent = isSpace ? "\u00A0" : ch;
+    // only color non-space characters
+    if (!isSpace) {
       span.style.color = palette[Math.floor(Math.random() * palette.length)];
     }
     frag.appendChild(span);
@@ -41,6 +35,7 @@ function colorizeHeaderOnce() {
   target.appendChild(frag);
   target.dataset.colored = "true";
 }
+
 
 /*********************************
  * 2) COMIC VIEWER CONFIG & STATE
@@ -65,21 +60,6 @@ let currentPage = null;
  * 3) INITIAL PAGE LOADING
  **************************/
 document.addEventListener('DOMContentLoaded', function () {
-  for (const ch of text) {
-  const span = document.createElement("span");
-  const isSpace = ch === " ";
-
-  // preserve visible spacing
-  span.textContent = isSpace ? "\u00A0" : ch;
-
-  // only color non-space characters
-  if (!isSpace) {
-    span.style.color = palette[Math.floor(Math.random() * palette.length)];
-  }
-
-  frag.appendChild(span);
-}
-
   // Make sure the header is colored AFTER the DOM exists
   colorizeHeaderOnce();
 

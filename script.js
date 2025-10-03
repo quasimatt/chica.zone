@@ -7,10 +7,10 @@ const comics = {
     2: {
         image: 'comics/changa2.png',
         date: '2025-10-02'
-    },
-    3: {
-        image: 'comics/changa3.png',
-        date: '2025-10-03'
+    }//,
+    //3: {
+        //image: 'comics/changa3.png',
+        //date: '2025-10-03'
     }
 };
 

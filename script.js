@@ -5,7 +5,8 @@
 const comics = {
   1: { image: 'comics/changa1.png', date: '2025-10-01' },
   2: { image: 'comics/changa2.png', date: '2025-10-02' },
-  3: { image: 'comics/changa3.png', date: '2025-10-03' }
+  3: { image: 'comics/changa3.png', date: '2025-10-03' },
+  4: { image: 'comics/changa4.png', date: '2025-10-04' }
 };
 
 // Current page number

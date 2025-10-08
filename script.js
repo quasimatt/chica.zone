@@ -9,7 +9,8 @@ const comics = {
   4: { image: 'comics/changa4.png', date: '2025-10-04' },
   5: { image: 'comics/changa5.png', date: '2025-10-05' },
   6: { image: 'comics/changa6.png', date: '2025-10-06' },
-  7: { image: 'comics/changa7.png', date: '2025-10-07' }
+  7: { image: 'comics/changa7.png', date: '2025-10-07' },
+  8: { image: 'comics/changa8.png', date: '2025-10-08' }
 };
 
 let currentPage = null;

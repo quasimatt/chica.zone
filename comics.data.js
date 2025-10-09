@@ -1,6 +1,6 @@
 // comics.data.js — single source of truth for pages
 const COMICS = {
-  1: { image: 'comics/changa1.png', date: '2025-10-01', title: 'Chica Mob Quarterly 6969' },
+  1: { image: 'comics/changa1.png', date: '2025-10-01', title: 'Chica Mob Quarterly' },
   2: { image: 'comics/changa2.png', date: '2025-10-02', title: 'Cass' },
   3: { image: 'comics/changa3.png', date: '2025-10-03', title: 'David' },
   4: { image: 'comics/changa4.png', date: '2025-10-04', title: 'Kathy' },

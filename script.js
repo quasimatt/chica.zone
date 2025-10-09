@@ -409,6 +409,105 @@ function preloadImages() {
   // main loop (classic setTimeout cadence)
   function tick() {
     // spawn when cursor moved a bit
-    if (Math.abs(x - ox
+    if (Math.abs(x - ox) > 1 || Math.abs(y - oy) > 1) {
+      ox = x; oy = y;
+      for (let i = 0; i < opts.COUNT; i++) {
+        if (starLife[i] === 0) {
+          // place star
+          const col = randColour();
+          stars[i].style.color = col;
+          stars[i].style.left = `${(starX[i] = x)}px`;
+          stars[i].style.top  = `${(starY[i] = y + 1)}px`;
+          stars[i].style.clipPath = 'inset(0 0 0 0)'; // full 5×5
+          stars[i].style.opacity = '1';
+          stars[i].style.visibility = 'visible';
+          starLife[i] = opts.STAR_LIFE; // reset life
+          break;
+        }
+      }
+    }
 
+    // update stars & tinies
+    for (let i = 0; i < opts.COUNT; i++) {
+      if (starLife[i] > 0) updateStar(i);
+      if (tinyLife[i] > 0) updateTiny(i);
+    }
+
+    setTimeout(tick, opts.TICK_MS);
+  }
+
+  function updateStar(i) {
+    const life = --starLife[i];
+
+    // mid-life: shrink clipping like the original "rect(1,4,4,1)"
+    if (life === Math.floor(opts.STAR_LIFE / 2)) {
+      // visually “pinch” to 3×3 via clip-path
+      stars[i].style.clipPath = 'inset(1px 1px 1px 1px)';
+    }
+
+    if (life > 0) {
+      starY[i] += opts.FALL_MIN + Math.random() * opts.FALL_VAR; // 1 + rand*3
+      starX[i] += ((i % 5) - 2) / opts.DRIFT_DEN;
+      if (starY[i] < sh + sdown) {
+        stars[i].style.transform = `translate(${starX[i]}px, ${starY[i]}px)`;
+      } else {
+        hideStar(i);
+      }
+    } else {
+      // convert to tiny
+      tinyLife[i] = opts.TINY_LIFE;
+      tinyX[i] = starX[i];
+      tinyY[i] = starY[i];
+      const col = getComputedStyle(stars[i]).color;
+      tinies[i].style.background = col;
+      tinies[i].style.opacity = '1';
+      tinies[i].style.visibility = 'visible';
+      tinies[i].style.transform = `translate(${tinyX[i]}px, ${tinyY[i]}px)`;
+      hideStar(i);
+    }
+  }
+
+  function hideStar(i) {
+    starLife[i] = 0;
+    stars[i].style.visibility = 'hidden';
+    stars[i].style.opacity = '0';
+    stars[i].style.transform = 'translate(-9999px,-9999px)';
+  }
+
+  function updateTiny(i) {
+    const life = --tinyLife[i];
+
+    // mid-life: shrink to 1×1 (like original)
+    if (life === Math.floor(opts.TINY_LIFE / 2)) {
+      tinies[i].style.width = '1px';
+      tinies[i].style.height = '1px';
+    } else if (life === Math.floor(opts.TINY_LIFE / 2) - 1) {
+      // reset to 2×2 for next time (prep)
+      setTimeout(() => { tinies[i].style.width = '2px'; tinies[i].style.height = '2px'; }, 0);
+    }
+
+    if (life > 0) {
+      tinyY[i] += opts.FALL_MIN + Math.random() * opts.FALL_VAR;
+      tinyX[i] += ((i % 5) - 2) / opts.DRIFT_DEN;
+      if (tinyY[i] < sh + sdown) {
+        // gentle fade toward end
+        if (life < 12) tinies[i].style.opacity = String(life / 12);
+        tinies[i].style.transform = `translate(${tinyX[i]}px, ${tinyY[i]}px)`;
+      } else {
+        hideTiny(i);
+      }
+    } else {
+      hideTiny(i);
+    }
+  }
+
+  function hideTiny(i) {
+    tinyLife[i] = 0;
+    tinies[i].style.visibility = 'hidden';
+    tinies[i].style.opacity = '0';
+    tinies[i].style.transform = 'translate(-9999px,-9999px)';
+  }
+
+  tick();
+})();
 

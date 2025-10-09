@@ -226,4 +226,25 @@ main { padding-bottom: 56px; }
   .ticker__track { animation: none; }
 }
 
+/* Sparkles */
+.sparkle {
+  position: fixed;
+  top: 0; left: 0;
+  width: 4px; height: 4px;              /* size will get randomized in JS */
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.95;
+  will-change: transform, opacity;
+  transition: opacity 0.25s linear;
+}
+
+/* Optional: if your title uses CSS variables, define them once */
+:root{
+  --sparkle-1: #ff4d9d;  /* pink */
+  --sparkle-2: #ffd166;  /* yellow */
+  --sparkle-3: #06d6a0;  /* green */
+  --sparkle-4: #8ecae6;  /* blue */
+  --sparkle-5: #9b5de5;  /* purple */
+}
+
 

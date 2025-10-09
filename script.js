@@ -129,34 +129,32 @@ function formatDateToDisplay(dateStr) {
 }
 
 function createPlaceholderImage() {
-  return `data:image/svg+xml;base64,${btoa(`
+  const svg = `
     <svg width="800" height="1000" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <style>
-          .horror-bg { fill: #2d1b69; }
-          .horror-border { fill: none; stroke: #ff4457; stroke-width: 8; stroke-dasharray: 20,10; }
-          .horror-text { fill: #00dddd; font-family: 'Creepster', cursive; text-anchor: middle; }
-          .horror-subtitle { fill: #fd79a8; font-family: 'Griffy', cursive; text-anchor: middle; }
-          .doodle { fill: #55efc4; opacity: 0.3; }
-        </style>
-      </defs>
+      <rect width="100%" height="100%" fill="#ffffff"/>
+      <rect x="20" y="20" width="760" height="960" fill="none" stroke="#eeeeee" stroke-width="2"/>
 
-      <rect class="horror-bg" width="100%" height="100%"/>
-      <rect class="horror-border" x="20" y="20" width="760" height="960"/>
+      <!-- line 1 -->
+      <text x="50%" y="48%" text-anchor="middle"
+            font-family="Love Ya Like A Sister, cursive"
+            font-size="20" fill="#444444">
+        sometimes it takes a while for pages to load:/
+      </text>
 
-      <text class="doodle" x="100" y="150" font-size="24" transform="rotate(-15 100 150)">★ MYSTERY ★</text>
-      <text class="doodle" x="650" y="200" font-size="20" transform="rotate(20 650 200)">💀 SPOOKY 💀</text>
-      <text class="doodle" x="150" y="800" font-size="18" transform="rotate(-10 150 800)">🎪 CHICA MOB 🎪</text>
-      <text class="doodle" x="600" y="850" font-size="22" transform="rotate(25 600 850)">✨ SECRETS ✨</text>
-
-      <text class="horror-text" x="400" y="400" font-size="48">Page Coming Soon!</text>
-      <text class="horror-subtitle" x="400" y="500" font-size="24">Convert your PDF to PNG and upload it</text>
-      <text class="horror-subtitle" x="400" y="550" font-size="20">The mysteries await...</text>
-
-      <text class="horror-text" x="400" y="650" font-size="36">Page ${currentPage || '?'}</text>
+      <!-- line 2 -->
+      <text x="50%" y="56%" text-anchor="middle"
+            font-family="Love Ya Like A Sister, cursive"
+            font-size="18" fill="#777777">
+        your changa will appear soon
+      </text>
     </svg>
-  `)}`;
+  `;
+
+  // Safe base64 encoding for any characters
+  const base64 = btoa(unescape(encodeURIComponent(svg)));
+  return `data:image/svg+xml;base64,${base64}`;
 }
+
 
 /***********************
  * 5) COMIC RENDERING

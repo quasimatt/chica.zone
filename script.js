@@ -363,4 +363,10 @@ function preloadImages() {
   });
 }
 
+// Allow Node scripts to import comics without breaking the browser
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { comics };
+}
+
+
 

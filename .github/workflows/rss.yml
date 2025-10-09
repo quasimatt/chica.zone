@@ -1,0 +1,30 @@
+name: Build RSS
+on:
+  push:
+    branches: [ main ]
+    # Optional: only rebuild when these change
+    # paths:
+    #   - comics.data.js
+    #   - build_rss.js
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node build_rss.js
+      - name: Commit feed.xml if changed
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add feed.xml
+            git commit -m "chore: update RSS feed"
+            git push
+          fi

@@ -331,60 +331,84 @@ function preloadImages() {
   });
 }
 
-// === Retro Snow-Flitter Cursor ===
-const palette = [
-  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-1').trim(),
-  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-2').trim(),
-  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-3').trim(),
-  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-4').trim(),
-  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-5').trim(),
-].filter(Boolean);
+// ===== Retro Tinkerbell Sparkles (modernized) =====
+// Behavior: cross "stars" spawn at cursor, drift down & sideways,
+// then convert to tiny dots that shrink/fade out. Slow snow-flitter vibe.
 
-const MAX_SPARKLES = 80;
-const active = new Set();
+(() => {
+  const opts = {
+    COUNT: 50,          // total particles in pool (like original "sparkles")
+    STAR_LIFE: 50,      // frames for star phase (~40fps tick → similar feel)
+    TINY_LIFE: 50,      // frames for tiny phase
+    TICK_MS: 40,        // ~25 fps, matches classic cadence
+    FALL_MIN: 1,        // vertical pixels per tick (randomized below)
+    FALL_VAR: 3,        // extra fall per tick (1 + rand*3 like original)
+    DRIFT_DEN: 5,       // horizontal drift: (i%5-2)/5 like original
+    USE_RANDOM_COLOUR: false, // set true for fully random RGB like snippet
+  };
 
-function createSparkle(x, y) {
-  const el = document.createElement('div');
-  el.className = 'sparkle';
-  el.style.background = palette[Math.floor(Math.random() * palette.length)];
-  const size = 3 + Math.random() * 3;
-  el.style.width = el.style.height = `${size}px`;
-  document.body.appendChild(el);
+  const palette = [
+    getCSS('--sparkle-1') || '#ff4d9d',
+    getCSS('--sparkle-2') || '#ffd166',
+    getCSS('--sparkle-3') || '#06d6a0',
+    getCSS('--sparkle-4') || '#8ecae6',
+    getCSS('--sparkle-5') || '#9b5de5',
+  ].filter(Boolean);
 
-  // soft float motion
-  const vx = (Math.random() - 0.5) * 0.3;
-  const vy = 0.3 + Math.random() * 0.4;
-  const sway = (Math.random() - 0.5) * 0.1;
-  const birth = performance.now();
+  function getCSS(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
 
-  const sparkle = { el, x, y, vx, vy, sway, birth, phase: Math.random() * Math.PI * 2 };
-  active.add(sparkle);
-}
-
-window.addEventListener('pointermove', (e) => {
-  if (active.size < MAX_SPARKLES) {
-    for (let i = 0; i < 2; i++) createSparkle(e.clientX, e.clientY);
-  }
-});
-
-function animate(t) {
-  for (const s of active) {
-    const age = (t - s.birth) / 1000;
-    s.phase += s.sway;
-    s.x += Math.sin(s.phase) * 0.5 + s.vx;
-    s.y += s.vy;
-
-    const fade = 1 - age / 5; // 5-second life
-    s.el.style.opacity = fade.toFixed(2);
-    s.el.style.transform = `translate(${s.x}px, ${s.y}px)`;
-
-    if (fade <= 0) {
-      s.el.remove();
-      active.delete(s);
+  function randColour(){
+    if (opts.USE_RANDOM_COLOUR) {
+      // biased bright-ish like original
+      const c = [255, Math.floor(Math.random()*256), Math.floor(Math.random()*(256 - Math.random()*128))];
+      c.sort(() => 0.5 - Math.random());
+      return `rgb(${c[0]},${c[1]},${c[2]})`;
     }
+    return palette[Math.floor(Math.random()*palette.length)];
   }
-  requestAnimationFrame(animate);
-}
-requestAnimationFrame(animate);
+
+  // viewport + scroll (we’ll track to keep behavior consistent across pages)
+  let sw = window.innerWidth, sh = window.innerHeight;
+  let sleft = window.pageXOffset || 0, sdown = window.pageYOffset || 0;
+
+  window.addEventListener('resize', () => { sw = innerWidth; sh = innerHeight; }, {passive:true});
+  window.addEventListener('scroll', () => { sleft = window.pageXOffset; sdown = window.pageYOffset; }, {passive:true});
+
+  // cursor
+  let x = sw/2, y = sh/2, ox = x, oy = y;
+  document.addEventListener('mousemove', (e) => { x = e.pageX; y = e.pageY; }, {passive:true});
+
+  // Pools
+  const stars = new Array(opts.COUNT);
+  const tinies = new Array(opts.COUNT);
+  const starLife = new Array(opts.COUNT).fill(0);
+  const tinyLife = new Array(opts.COUNT).fill(0);
+  const starX = new Array(opts.COUNT);
+  const starY = new Array(opts.COUNT);
+  const tinyX = new Array(opts.COUNT);
+  const tinyY = new Array(opts.COUNT);
+
+  // create DOM nodes
+  for (let i = 0; i < opts.COUNT; i++) {
+    const star = document.createElement('div');
+    star.className = 'spark-star';
+    const h = document.createElement('div'); h.className = 'h';
+    const v = document.createElement('div'); v.className = 'v';
+    star.append(h, v);
+    star.style.visibility = 'hidden';
+    document.body.appendChild(star);
+    stars[i] = star;
+
+    const tiny = document.createElement('div');
+    tiny.className = 'spark-tiny';
+    tiny.style.visibility = 'hidden';
+    document.body.appendChild(tiny);
+    tinies[i] = tiny;
+  }
+
+  // main loop (classic setTimeout cadence)
+  function tick() {
+    // spawn when cursor moved a bit
+    if (Math.abs(x - ox
 
 

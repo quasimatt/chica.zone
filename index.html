@@ -77,5 +77,18 @@
         </div>
       </div>
     </div>
+    <!-- Fairy dust cursor (glitter trail) -->
+<script src="https://cdn.jsdelivr.net/npm/cursor-effects@latest/dist/cursor-effects.min.js"></script>
+<script>
+  // Respect users who prefer reduced motion
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    new cursoreffects.fairyDustCursor({
+      colors: ['#ff4d9d', '#ffd166', '#06d6a0', '#8ecae6', '#9b5de5'], // tweak to taste
+      elementCount: 20,  // density; try 10–30
+      lifeSpan: 1.2      // seconds each sparkle lives
+    });
+  }
+</script>
+
 </body>
 </html>

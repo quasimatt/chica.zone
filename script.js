@@ -177,15 +177,30 @@ function loadComic(pageNum, opts = { updateHash: true }) {
   }
 
   const comic = comics[pageNum];
-  const pageNumberElement = document.getElementById('page-number');
-  const dateElement = document.getElementById('comic-date');
   const imageElement = document.getElementById('comic-image');
   const titleElement = document.getElementById('comic-title');
+  const dateElement  = document.getElementById('comic-date'); // we'll clear this since date moves into header
 
-  if (pageNumberElement) pageNumberElement.textContent = pageNum;
-  if (titleElement) titleElement.textContent = `Page ${pageNum}`;
-  if (dateElement) dateElement.textContent = formatDateToDisplay(comic.date);
+  // Build combined header: "Page 7 — Matt (Tuesday, October 7, 2025)"
+  const prettyDate = comic.date ? formatDateToDisplay(comic.date) : null;
+  const headerText = comic.title
+    ? `Page ${pageNum} — ${comic.title}${prettyDate ? ` (${prettyDate})` : ''}`
+    : `Page ${pageNum}${prettyDate ? ` (${prettyDate})` : ''}`;
 
+  if (titleElement) titleElement.textContent = headerText;
+  if (dateElement)  dateElement.textContent  = ''; // no separate date line anymore
+
+  // Update <title> + meta description
+  document.title = `CHICA ZONE — ${comic.title || `Page ${pageNum}`}`;
+  let desc = document.querySelector('meta[name="description"]');
+  if (!desc) {
+    desc = document.createElement('meta');
+    desc.name = 'description';
+    document.head.appendChild(desc);
+  }
+  desc.setAttribute('content', `${comic.title || `Page ${pageNum}`}${comic.date ? ` — ${comic.date}` : ''}`);
+
+  // Load image (with placeholder fallback)
   const img = new Image();
   img.onload = function () {
     if (imageElement) {
@@ -207,6 +222,7 @@ function loadComic(pageNum, opts = { updateHash: true }) {
 
   if (opts.updateHash) updateURL(pageNum);
 }
+
 
 /*************************
  * 6) NAV / URL / PICKERS

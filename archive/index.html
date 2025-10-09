@@ -97,7 +97,7 @@
     if (!grid || !data) return;
 
     // Newest first (reverse if you want oldest first)
-    const pages = Object.keys(data).map(Number).sort((a, b) => b - a);
+    const pages = Object.keys(data).map(Number).sort((a, b) => a - b);
 
     const frag = document.createDocumentFragment();
     pages.forEach(num => {

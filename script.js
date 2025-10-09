@@ -179,18 +179,15 @@ function loadComic(pageNum, opts = { updateHash: true }) {
   const comic = comics[pageNum];
   const imageElement = document.getElementById('comic-image');
   const titleElement = document.getElementById('comic-title');
-  const dateElement  = document.getElementById('comic-date'); // we'll clear this since date moves into header
+  const dateElement  = document.getElementById('comic-date');
 
-  // Build combined header: "Page 7 — Matt (Tuesday, October 7, 2025)"
-  const prettyDate = comic.date ? formatDateToDisplay(comic.date) : null;
-  const headerText = comic.title
-    ? `Page ${pageNum} — ${comic.title}${prettyDate ? ` (${prettyDate})` : ''}`
-    : `Page ${pageNum}${prettyDate ? ` (${prettyDate})` : ''}`;
+  // --- show title only, no page number ---
+  if (titleElement) titleElement.textContent = comic.title || '';
 
-  if (titleElement) titleElement.textContent = headerText;
-  if (dateElement)  dateElement.textContent  = ''; // no separate date line anymore
+  // --- date on its own smaller line ---
+  if (dateElement) dateElement.textContent = formatDateToDisplay(comic.date);
 
-  // Update <title> + meta description
+  // --- update tab title + meta description ---
   document.title = `CHICA ZONE — ${comic.title || `Page ${pageNum}`}`;
   let desc = document.querySelector('meta[name="description"]');
   if (!desc) {
@@ -198,31 +195,29 @@ function loadComic(pageNum, opts = { updateHash: true }) {
     desc.name = 'description';
     document.head.appendChild(desc);
   }
-  desc.setAttribute('content', `${comic.title || `Page ${pageNum}`}${comic.date ? ` — ${comic.date}` : ''}`);
+  desc.setAttribute('content', `${comic.title || `Page ${pageNum}`} — ${comic.date || ''}`);
 
-  // Load image (with placeholder fallback)
+  // --- load image with graceful fallback ---
   const img = new Image();
   img.onload = function () {
     if (imageElement) {
       imageElement.src = comic.image;
-      imageElement.alt = `Page ${pageNum} of Chica Mob`;
+      imageElement.alt = comic.title ? `${comic.title} — Chica Mob` : `Page ${pageNum} — Chica Mob`;
     }
   };
   img.onerror = function () {
     console.warn(`Failed to load image: ${comic.image}`);
     if (imageElement) {
       imageElement.src = createPlaceholderImage();
-      imageElement.alt = `Page ${pageNum} - Image not available`;
+      imageElement.alt = `${comic.title || `Page ${pageNum}`} - Image not available`;
     }
   };
   img.src = comic.image;
 
   updateNavigationButtons();
   updatePagePicker(pageNum);
-
   if (opts.updateHash) updateURL(pageNum);
 }
-
 
 /*************************
  * 6) NAV / URL / PICKERS

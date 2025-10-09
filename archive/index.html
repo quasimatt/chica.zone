@@ -12,7 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
 
   <!-- Base styles -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script src="../comics.data.js" defer></script>
 
   <style>
     .archive-container { margin: 2rem 0; }
@@ -76,56 +78,79 @@
 
   <script src="script.js"></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const READER_ROOT = '/'; // change if your reader lives elsewhere
+  // Simple fallback formatter so the archive doesn't depend on script.js
+  function formatDate(dateStr) {
+    try {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const dt = new Date(y, m - 1, d);
+      if (isNaN(dt)) return dateStr || 'Unknown Date';
+      return dt.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    } catch { return dateStr || 'Unknown Date'; }
+  }
 
-    function buildArchive() {
-      const grid = document.getElementById('archive-grid');
-      if (!grid || typeof comics !== 'object') return;
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const READER_ROOT = '/'; // your reader homepage; hash links work there
 
-      const pages = Object.keys(comics).map(Number).sort((a, b) => a - b);
-      const frag = document.createDocumentFragment();
+  function buildArchive() {
+    const grid = document.getElementById('archive-grid');
+    const data = (window && window.CHICA_COMICS) ? window.CHICA_COMICS : null;
+    if (!grid || !data) return;
 
-      pages.forEach(num => {
-        const c = comics[num] || {};
-        const a = document.createElement('a');
-        a.className = 'archive-card';
-        a.href = READER_ROOT + '#' + num;
-        a.setAttribute('aria-label', 'Open page ' + num);
+    // Newest first (reverse if you want oldest first)
+    const pages = Object.keys(data).map(Number).sort((a, b) => b - a);
 
-        const thumb = document.createElement('div');
-        thumb.className = 'archive-thumb';
+    const frag = document.createDocumentFragment();
+    pages.forEach(num => {
+      const c = data[num] || {};
+      const title = c.title || `Page ${num}`;
+      const pretty = c.date ? formatDate(c.date) : 'Unknown Date';
 
-        const img = document.createElement('img');
-        img.loading = 'lazy';
-        img.alt = 'Page ' + num;
-        img.src = c.image || '';
-        img.onerror = function() {
-          if (typeof createPlaceholderImage === 'function') {
-            this.src = createPlaceholderImage();
-          }
-        };
-        thumb.appendChild(img);
+      const a = document.createElement('a');
+      a.className = 'archive-card';
+      a.href = READER_ROOT + '#' + num;         // deep-link to the main reader
+      a.setAttribute('aria-label', `${title} — ${pretty}`);
 
-        const meta = document.createElement('div');
-        meta.className = 'archive-meta';
-        const h3 = document.createElement('h3');
-        h3.textContent = 'Page ' + num;
-        const p = document.createElement('p');
-        p.textContent = c.date ? (typeof formatDateToDisplay === 'function' ? formatDateToDisplay(c.date) : c.date) : 'Unknown Date';
-        meta.appendChild(h3);
-        meta.appendChild(p);
+      const thumb = document.createElement('div');
+      thumb.className = 'archive-thumb';
 
-        a.appendChild(thumb);
-        a.appendChild(meta);
-        frag.appendChild(a);
-      });
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.alt = title;
+      img.src = c.image || '';
+      img.onerror = function () {
+        // light inline placeholder so we don't depend on script.js
+        this.src = 'data:image/svg+xml;base64,' + btoa(`
+          <svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000">
+            <rect width="100%" height="100%" fill="#ffffff"/>
+            <rect x="20" y="20" width="760" height="960" fill="none" stroke="#eee" stroke-width="2"/>
+            <text x="50%" y="45%" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#999">Image not available</text>
+            <text x="50%" y="55%" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#bbb">${title.replace(/&/g,'&amp;')}</text>
+          </svg>
+        `);
+      };
+      thumb.appendChild(img);
 
-      grid.appendChild(frag);
-    }
+      const meta = document.createElement('div');
+      meta.className = 'archive-meta';
+      const h3 = document.createElement('h3');
+      h3.textContent = title;
+      const p = document.createElement('p');
+      p.textContent = pretty;
+      meta.appendChild(h3);
+      meta.appendChild(p);
 
-    document.addEventListener('DOMContentLoaded', buildArchive);
-  </script>
+      a.appendChild(thumb);
+      a.appendChild(meta);
+      frag.appendChild(a);
+    });
+
+    grid.textContent = ''; // clear if re-rendering
+    grid.appendChild(frag);
+  }
+
+  document.addEventListener('DOMContentLoaded', buildArchive);
+</script>
+
 </body>
 </html>
 

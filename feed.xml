@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>CHICA MOB QUARTERLY</title>
+  <link>https://chica.zone</link>
+  <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
+  <language>en-us</language>
+  <lastBuildDate>Thu, 09 Oct 2025 17:50:45 GMT</lastBuildDate>
+  <docs>https://www.rssboard.org/rss-specification</docs>
+  <generator>build_rss.js</generator>
+  <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>The Beach</title>
+    <link>https://chica.zone/#9</link>
+    <guid isPermaLink="false">https://chica.zone/#9</guid>
+    <pubDate>Thu, 09 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>The Beach</strong></p>
+    <p>Published: 2025-10-09</p>
+    <p><img src="https://chica.zone/comics/changa9.png" alt="The Beach" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone/comics/changa9.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>Chicas Assemble</title>
+    <link>https://chica.zone/#8</link>
+    <guid isPermaLink="false">https://chica.zone/#8</guid>
+    <pubDate>Wed, 08 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Chicas Assemble</strong></p>
+    <p>Published: 2025-10-08</p>
+    <p><img src="https://chica.zone/comics/changa8.png" alt="Chicas Assemble" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone/comics/changa8.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>Matt</title>
+    <link>https://chica.zone/#7</link>
+    <guid isPermaLink="false">https://chica.zone/#7</guid>
+    <pubDate>Tue, 07 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Matt</strong></p>
+    <p>Published: 2025-10-07</p>
+    <p><img src="https://chica.zone/comics/changa7.png" alt="Matt" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone/comics/changa7.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>Maisy</title>
+    <link>https://chica.zone/#6</link>
+    <guid isPermaLink="false">https://chica.zone/#6</guid>
+    <pubDate>Mon, 06 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Maisy</strong></p>
+    <p>Published: 2025-10-06</p>
+    <p><img src="https://chica.zone/comics/changa6.png" alt="Maisy" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone/comics/changa6.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>Lee</title>
+    <link>https://chica.zone/#5</link>
+    <guid isPermaLink="false">https://chica.zone/#5</guid>
+    <pubDate>Sun, 05 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Lee</strong></p>
+    <p>Published: 2025-10-05</p>
+    <p><img src="https://chica.zone/comics/changa5.png" alt="Lee" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone/comics/changa5.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>Kathy</title>
+    <link>https://chica.zone/#4</link>
+    <guid isPermaLink="false">https://chica.zone/#4</guid>
+    <pubDate>Sat, 04 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Kathy</strong></p>
+    <p>Published: 2025-10-04</p>
+    <p><img src="https://chica.zone/comics/changa4.png" alt="Kathy" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone/comics/changa4.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>David</title>
+    <link>https://chica.zone/#3</link>
+    <guid isPermaLink="false">https://chica.zone/#3</guid>
+    <pubDate>Fri, 03 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>David</strong></p>
+    <p>Published: 2025-10-03</p>
+    <p><img src="https://chica.zone/comics/changa3.png" alt="David" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone/comics/changa3.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>Cass</title>
+    <link>https://chica.zone/#2</link>
+    <guid isPermaLink="false">https://chica.zone/#2</guid>
+    <pubDate>Thu, 02 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Cass</strong></p>
+    <p>Published: 2025-10-02</p>
+    <p><img src="https://chica.zone/comics/changa2.png" alt="Cass" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone/comics/changa2.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>Chica Mob Quarterly</title>
+    <link>https://chica.zone/#1</link>
+    <guid isPermaLink="false">https://chica.zone/#1</guid>
+    <pubDate>Wed, 01 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Chica Mob Quarterly</strong></p>
+    <p>Published: 2025-10-01</p>
+    <p><img src="https://chica.zone/comics/changa1.png" alt="Chica Mob Quarterly" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone/comics/changa1.png" type="image/png" />
+  </item>
+</channel>
+</rss>

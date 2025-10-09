@@ -1,3 +1,24 @@
+const pageLabel = document.getElementById('page-label');
+
+function renderPage(n) {
+  const data = comics[n];
+  document.getElementById('comic-image').src = data.image;
+
+  // build combined label: "Page 7 — Glitter Spill"
+  const titleText = data.title ? `Page ${n} — ${data.title}` : `Page ${n}`;
+  pageLabel.textContent = titleText;
+
+  // update document <title> + meta description
+  document.title = `CHICA ZONE — ${data.title || `Page ${n}`}`;
+  let desc = document.querySelector('meta[name="description"]');
+  if (!desc) {
+    desc = document.createElement('meta');
+    desc.name = 'description';
+    document.head.appendChild(desc);
+  }
+  desc.setAttribute('content', `${data.title || ''} — ${data.date || ''}`);
+}
+
 /*********************************
  * 2) COMIC VIEWER CONFIG & STATE
  *********************************/

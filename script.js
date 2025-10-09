@@ -330,3 +330,89 @@ function preloadImages() {
     img.src = comic.image;
   });
 }
+
+// === Glitter Cursor ===
+// If your title already defines colors via CSS vars, this will pick them up.
+// Otherwise, the fallback array below covers the palette.
+const sparklePalette = [
+  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-1').trim() || '#ff4d9d',
+  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-2').trim() || '#ffd166',
+  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-3').trim() || '#06d6a0',
+  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-4').trim() || '#8ecae6',
+  getComputedStyle(document.documentElement).getPropertyValue('--sparkle-5').trim() || '#9b5de5'
+].filter(Boolean);
+
+const SPARKLES_PER_MOVE = 6;  // tune this for density
+const SPARKLE_LIFETIME = 700; // ms
+const GRAVITY = 0.12;         // downward acceleration (px/frame^2)
+
+// Pool for performance
+const sparklePool = [];
+const activeSparkles = new Set();
+
+function spawnSparkle(x, y) {
+  const el = sparklePool.pop() || document.createElement('div');
+  el.className = 'sparkle';
+  const color = sparklePalette[Math.floor(Math.random() * sparklePalette.length)];
+  const size = 2 + Math.random() * 3; // 2–5 px
+  el.style.background = color;
+  el.style.width = `${size}px`;
+  el.style.height = `${size}px`;
+
+  // Initial physics
+  const vx = (Math.random() - 0.5) * 1.6;          // slight horizontal drift
+  const vy = -Math.random() * 0.8;                 // tiny upward pop, will fall
+  const birth = performance.now();
+
+  const sparkle = { el, x, y, vx, vy, birth, dead: false };
+  document.body.appendChild(el);
+  activeSparkles.add(sparkle);
+}
+
+let lastMove = 0;
+window.addEventListener('pointermove', (e) => {
+  const now = performance.now();
+  // throttle a bit for perf
+  if (now - lastMove < 12) return;
+  lastMove = now;
+  for (let i = 0; i < SPARKLES_PER_MOVE; i++) {
+    const jitterX = (Math.random() - 0.5) * 6;
+    const jitterY = (Math.random() - 0.5) * 6;
+    spawnSparkle(e.clientX + jitterX, e.clientY + jitterY);
+  }
+});
+
+function animateSparkles(t) {
+  for (const s of activeSparkles) {
+    const age = t - s.birth;
+    if (age > SPARKLE_LIFETIME) {
+      s.dead = true;
+      s.el.style.opacity = '0';
+      continue;
+    }
+    // Physics
+    s.vy += GRAVITY;           // gravity
+    s.x += s.vx;
+    s.y += s.vy;
+
+    // Fade after half life
+    if (age > SPARKLE_LIFETIME * 0.5) {
+      const fade = 1 - (age - SPARKLE_LIFETIME * 0.5) / (SPARKLE_LIFETIME * 0.5);
+      s.el.style.opacity = String(fade);
+    }
+
+    s.el.style.transform = `translate(${s.x}px, ${s.y}px)`;
+  }
+
+  // Reclaim dead nodes
+  for (const s of [...activeSparkles]) {
+    if (!s.dead) continue;
+    activeSparkles.delete(s);
+    s.el.remove();
+    sparklePool.push(s.el);
+  }
+
+  requestAnimationFrame(animateSparkles);
+}
+requestAnimationFrame(animateSparkles);
+

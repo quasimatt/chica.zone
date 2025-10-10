@@ -5,20 +5,20 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Fri, 10 Oct 2025 15:49:10 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 10 Oct 2025 15:54:45 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
 
   <item>
-    <title>Beach Criminal</title>
+    <title>The Beach Criminal</title>
     <link>https://chica.zone/#10</link>
     <guid isPermaLink="false">https://chica.zone/#10</guid>
     <pubDate>Fri, 10 Oct 2025 12:00:00 GMT</pubDate>
     <description><![CDATA[
-    <p><strong>Beach Criminal</strong></p>
+    <p><strong>The Beach Criminal</strong></p>
     <p>Published: 2025-10-10</p>
-    <p><img src="https://chica.zone//comics/changa10.png" alt="Beach Criminal" /></p>
+    <p><img src="https://chica.zone//comics/changa10.png" alt="The Beach Criminal" /></p>
   ]]></description>
     <enclosure url="https://chica.zone//comics/changa10.png" type="image/png" />
   </item>

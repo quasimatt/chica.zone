@@ -1,5 +1,5 @@
-// quiz.js — cleaned labels, random tie-break, links newest matching comic page.
-// Robust boot + absolute image paths so it works from /quiz/.
+// quiz.js — cleaned labels, randomized options, random tie-break,
+// links newest matching comic page. Works from /quiz/ via absolute image paths.
 
 (function () {
   function toAbsolute(src) {
@@ -8,11 +8,22 @@
     return '/' + src.replace(/^\/+/, '');
   }
 
+  // Fisher–Yates
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
   function start() {
     console.log('[quiz] start()');
 
     const CHARACTERS = ['Maisy', 'Matt', 'David', 'Cass', 'Kathy', 'Lee'];
 
+    // Base questions (labels already cleaned)
     const QUESTIONS = [
       {
         text: `some objects are sitting in front of you. which one do you grab?`,
@@ -82,6 +93,9 @@
       },
     ];
 
+    // Create a shuffled copy of options for each question (once per run).
+    let QUIZ = QUESTIONS.map(q => ({ ...q, options: shuffle(q.options) }));
+
     // DOM refs
     const bodyEl = document.getElementById('quiz-body');
     const progressEl = document.getElementById('quiz-progress');
@@ -103,12 +117,11 @@
     prevBtn.addEventListener('click', prevQuestion);
     nextBtn.addEventListener('click', nextOrFinish);
 
-    // Initial render
     renderQuestion();
 
     function renderQuestion() {
-      const q = QUESTIONS[index];
-      progressEl.textContent = `Question ${index + 1} of ${QUESTIONS.length}`;
+      const q = QUIZ[index];
+      progressEl.textContent = `Question ${index + 1} of ${QUIZ.length}`;
 
       const selected = answers[index];
 
@@ -125,7 +138,7 @@
       `;
 
       prevBtn.disabled = index === 0;
-      nextBtn.textContent = (index === QUESTIONS.length - 1) ? 'See Result →' : 'Next →';
+      nextBtn.textContent = (index === QUIZ.length - 1) ? 'See Result →' : 'Next →';
       nextBtn.disabled = (selected === undefined);
 
       bodyEl.querySelectorAll('input[name="opt"]').forEach((inp) => {
@@ -138,7 +151,7 @@
 
     function nextOrFinish() {
       if (answers[index] === undefined) return;
-      if (index < QUESTIONS.length - 1) {
+      if (index < QUIZ.length - 1) {
         index += 1;
         renderQuestion();
       } else {
@@ -156,7 +169,7 @@
     function computeResult() {
       for (const k of Object.keys(scores)) scores[k] = 0;
       answers.forEach((optIndex, qIdx) => {
-        const opt = QUESTIONS[qIdx].options[optIndex];
+        const opt = QUIZ[qIdx].options[optIndex];
         for (const [char, pts] of Object.entries(opt.scores)) {
           if (scores[char] !== undefined) scores[char] += pts;
         }
@@ -168,7 +181,7 @@
       showResult(chosen);
     }
 
-    // Map character name -> newest matching page title from comics.data.js
+    // character -> newest matching page title
     function findPageForCharacter(name) {
       const data = (window && window.CHICA_COMICS) ? window.CHICA_COMICS : {};
       let found = null;
@@ -176,7 +189,7 @@
         const n = parseInt(numStr, 10);
         if (!Number.isFinite(n) || !info || !info.title) continue;
         if (String(info.title).toLowerCase() === String(name).toLowerCase()) {
-          if (found === null || n > found) found = n; // newest if multiple
+          if (found === null || n > found) found = n;
         }
       }
       return found;
@@ -224,6 +237,8 @@
     }
 
     function restartQuiz() {
+      // New shuffle each run
+      QUIZ = QUESTIONS.map(q => ({ ...q, options: shuffle(q.options) }));
       index = 0;
       answers.length = 0;
       renderQuestion();

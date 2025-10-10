@@ -81,7 +81,7 @@
         ]
       },
       {
-        text: `finally... what's your favorite body part?`,
+        text: `what's your favorite body part?`,
         options: [
           { label: `my back. i almost feel like it's sprouting wings...`, scores: { David: 1 } },
           { label: `my brain. i just can't help but think`, scores: { Matt: 1 } },

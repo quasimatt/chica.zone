@@ -22,6 +22,38 @@
     console.log('[quiz] start()');
 
     const CHARACTERS = ['Maisy', 'Matt', 'David', 'Cass', 'Kathy', 'Lee'];
+    const DESCRIPTIONS = {
+  David: [
+    `David is a friendly boy that loves to fly. He chases the wind and follows his heart.`,
+    `Your taste is “elevated” and your ambitions are “high”. You cruise through life with so much style even a jetplane would get jealous!`,
+    `You’re lucky to have David as your result… it means you and your friends are never falling down—only flying.`
+  ],
+  Cass: [
+    `Cass is a clever and charming gal who loves to play her cards right. She stacks the deck like a queen and never gets “board”!`,
+    `Your world has 64 squares and 0 limits. With you, a game can always be fun. Checkmate!`,
+    `You’re lucky to have Cass as your result… it means you’re always one diagonal from winning the game. ;)`
+  ],
+  Kathy: [
+    `Kathy is a fun loving girl that likes to rock out and get sporty. She gets a vision about the most amazing song to make everyone dance.`,
+    `With you, the weather can be predicted as sunny with a chance of awesome.`,
+    `You’re lucky to have Kathy as your result… it means you never leave your friends in the past.`
+  ],
+  Matt: [
+    `Matt is a math whiz who always has a calculator on hand. He carries the one, divides and conquers, and knows equations.`,
+    `Your taste is facts over foolishness, and you think twice about the rumors you hear at Starbucks.`,
+    `You’re lucky to have Matt as your result… it means life always adds up.`
+  ],
+  Lee: [
+    `Lee is a lawyer who treats criminals like a punching bag. He brings peace to the courtroom and cross-examines nonsense.`,
+    `You are a law follower with an uppercut: order in the court, order in the dojo, and justice served on the rocks. Order up!`,
+    `You’re lucky to have Lee as your result… it means you keep the friend group out of prison. Case closed!`
+  ],
+  Maisy: [
+    `Maisy is a girl with tons of horsepower and the voice of an angel. She gallops through life, and “neigh”-ver misses the finish line.`,
+    `You’re ready to put on a saddle and make the stadium cheer. It’s going to take a lot more than a whip to dull this pony’s sparkle.`,
+    `You’re lucky to have Maisy as your result… it means your friends never are alone riding through the field without you.`
+  ]
+};
 
     // Base questions (existing ones)
     const QUESTIONS = [
@@ -256,45 +288,51 @@
     }
 
     function showResult(character) {
-      const pageNum = findPageForCharacter(character);
-      const data = (window && window.CHICA_COMICS) ? window.CHICA_COMICS : {};
-      const page = pageNum ? data[pageNum] : null;
+  const pageNum = findPageForCharacter(character);
+  const data = (window && window.CHICA_COMICS) ? window.CHICA_COMICS : {};
+  const page = pageNum ? data[pageNum] : null;
 
-      const link = pageNum ? `/#${pageNum}` : '/archive/';
-      const imgSrc = page?.image ? toAbsolute(page.image) : makeTinyPlaceholder(`Meet ${character}`);
+  const link = pageNum ? `/#${pageNum}` : '/archive/';
+  const imgSrc = page?.image ? toAbsolute(page.image) : makeTinyPlaceholder(`Meet ${character}`);
 
-      progressEl.textContent = 'Result';
+  const desc = DESCRIPTIONS[character] || [];
+  const descHTML = desc.length
+    ? `<div class="result-copy">${desc.map(p => `<p>${p}</p>`).join('')}</div>`
+    : '';
 
-      bodyEl.innerHTML = `
-        <div class="result">
-          <h3>You’re <span>${escapeHTML(character)}</span>!</h3>
-          <p>${pageNum
-              ? `We found your page: <a href="${link}">Page ${pageNum}</a>`
-              : `We couldn't find a page titled “${escapeHTML(character)}” — explore the archive!`}</p>
-          <a href="${link}" aria-label="Open ${escapeHTML(character)}'s page">
-            <img id="result-img" src="${imgSrc}" alt="${escapeHTML(character)}">
-          </a>
-          <div style="margin-top:1rem;">
-            <button id="again-btn" class="again-btn" type="button">Take it again</button>
-          </div>
-        </div>
-      `;
+  progressEl.textContent = 'Result';
 
-      const btn = document.getElementById('again-btn');
-      if (btn) {
-        btn.style.cssText = 'appearance:none;border:1px solid #ddd;background:#fafafa;color:#111;padding:.6rem 1rem;font-size:.95rem;font-family:\'Love Ya Like A Sister\', cursive;border-radius:6px;cursor:pointer;';
-        btn.addEventListener('click', restartQuiz);
-      }
+  bodyEl.innerHTML = `
+    <div class="result">
+      <h3>You’re <span>${escapeHTML(character)}</span>!</h3>
+      ${descHTML}
+      <p>${pageNum
+          ? `We found your page: <a href="${link}">Page ${pageNum}</a>`
+          : `We couldn't find a page titled “${escapeHTML(character)}” — explore the archive!`}</p>
+      <a href="${link}" aria-label="Open ${escapeHTML(character)}'s page">
+        <img id="result-img" src="${imgSrc}" alt="${escapeHTML(character)}">
+      </a>
+      <div style="margin-top:1rem;">
+        <button id="again-btn" class="again-btn" type="button">Take it again</button>
+      </div>
+    </div>
+  `;
 
-      const imgEl = document.getElementById('result-img');
-      if (imgEl) {
-        imgEl.onerror = () => { imgEl.src = makeTinyPlaceholder(`Meet ${character}`); };
-      }
+  const btn = document.getElementById('again-btn');
+  if (btn) {
+    btn.style.cssText = 'appearance:none;border:1px solid #ddd;background:#fafafa;color:#111;padding:.6rem 1rem;font-size:.95rem;font-family:\'Love Ya Like A Sister\', cursive;border-radius:6px;cursor:pointer;';
+    btn.addEventListener('click', restartQuiz);
+  }
 
-      nextBtn.disabled = true;
-      prevBtn.disabled = true;
-      nextBtn.textContent = 'Next →';
-    }
+  const imgEl = document.getElementById('result-img');
+  if (imgEl) {
+    imgEl.onerror = () => { imgEl.src = makeTinyPlaceholder(`Meet ${character}`); };
+  }
+
+  nextBtn.disabled = true;
+  prevBtn.disabled = true;
+  nextBtn.textContent = 'Next →';
+}
 
     function restartQuiz() {
       // new shuffle each run

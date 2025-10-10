@@ -9,7 +9,7 @@ const COMICS = {
   7: { image: '/comics/changa7.png', date: '2025-10-07', title: 'Matt' },
   8: { image: '/comics/changa8.png', date: '2025-10-08', title: 'Chicas Assemble' },
   9: { image: '/comics/changa9.png', date: '2025-10-09', title: 'The Beach' },
-  10: { image: '/comics/changa10.png', date: '2025-10-10', title: 'Beach Criminal' }
+  10: { image: '/comics/changa10.png', date: '2025-10-10', title: 'The Beach Criminal' }
 };
 
 // Expose to browser and Node

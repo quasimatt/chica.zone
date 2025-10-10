@@ -2,6 +2,13 @@
 // Robust boot: runs whether DOM is already ready or not, shows friendly error on failure.
 
 (function () {
+  // --- Add near the top of start() (or above your functions) ---
+function toAbsolute(src) {
+  if (!src) return '';
+  if (/^https?:\/\//i.test(src) || src.startsWith('/')) return src;
+  return '/' + src.replace(/^\/+/, '');
+}
+
   function start() {
     console.log('[quiz] start()');
 
@@ -81,6 +88,7 @@
     const progressEl = document.getElementById('quiz-progress');
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
+    const homeBtn = document.getElementById('home-btn'); 
 
     if (!bodyEl || !progressEl || !nextBtn || !prevBtn) {
       throw new Error('Missing required elements (#quiz-body, #quiz-progress, #next-btn, #prev-btn).');
@@ -176,35 +184,48 @@
     }
 
     function showResult(character) {
-      const pageNum = findPageForCharacter(character);
-      const data = (window && window.CHICA_COMICS) ? window.CHICA_COMICS : {};
-      const page = pageNum ? data[pageNum] : null;
+  const pageNum = findPageForCharacter(character);
+  const data = (window && window.CHICA_COMICS) ? window.CHICA_COMICS : {};
+  const page = pageNum ? data[pageNum] : null;
 
-      const link = pageNum ? `/#${pageNum}` : '/archive/';
-      const imgSrc = page?.image || makeTinyPlaceholder(`Meet ${character}`);
+  const link = pageNum ? `/#${pageNum}` : '/archive/';
+  // IMPORTANT: make image path absolute so /quiz/ works
+  const imgSrc = page?.image ? toAbsolute(page.image) : makeTinyPlaceholder(`Meet ${character}`);
 
-      progressEl.textContent = 'Result';
+  progressEl.textContent = 'Result';
 
-      bodyEl.innerHTML = `
-        <div class="result">
-          <h3>You’re <span>${escapeHTML(character)}</span>!</h3>
-          <p>${pageNum
-              ? `We found your page: <a href="${link}">Page ${pageNum}</a>`
-              : `We couldn't find a page titled “${escapeHTML(character)}” — explore the archive!`}</p>
-          <a href="${link}" aria-label="Open ${escapeHTML(character)}'s page">
-            <img src="${imgSrc}" alt="${escapeHTML(character)}">
-          </a>
-          <div style="margin-top:1rem;">
-            <button id="again-btn" class="again-btn" type="button">Take it again</button>
-          </div>
-        </div>
-      `;
+  bodyEl.innerHTML = `
+    <div class="result">
+      <h3>You’re <span>${escapeHTML(character)}</span>!</h3>
+      <p>${pageNum
+          ? `We found your page: <a href="${link}">Page ${pageNum}</a>`
+          : `We couldn't find a page titled “${escapeHTML(character)}” — explore the archive!`}</p>
+      <a href="${link}" aria-label="Open ${escapeHTML(character)}'s page">
+        <img id="result-img" src="${imgSrc}" alt="${escapeHTML(character)}">
+      </a>
+      <div style="margin-top:1rem;">
+        <button id="again-btn" class="again-btn" type="button">Take it again</button>
+      </div>
+    </div>
+  `;
 
-      const btn = document.getElementById('again-btn');
-      if (btn) {
-        btn.style.cssText = 'appearance:none;border:1px solid #ddd;background:#fafafa;color:#111;padding:.6rem 1rem;font-size:.95rem;font-family:\'Love Ya Like A Sister\', cursive;border-radius:6px;cursor:pointer;';
-        btn.addEventListener('click', restartQuiz);
-      }
+  const btn = document.getElementById('again-btn');
+  if (btn) {
+    btn.style.cssText = 'appearance:none;border:1px solid #ddd;background:#fafafa;color:#111;padding:.6rem 1rem;font-size:.95rem;font-family:\'Love Ya Like A Sister\', cursive;border-radius:6px;cursor:pointer;';
+    btn.addEventListener('click', restartQuiz);
+  }
+
+  // Fallback if the image 404s anyway
+  const imgEl = document.getElementById('result-img');
+  if (imgEl) {
+    imgEl.onerror = () => { imgEl.src = makeTinyPlaceholder(`Meet ${character}`); };
+  }
+
+  nextBtn.disabled = true;
+  prevBtn.disabled = true;
+  nextBtn.textContent = 'Next →';
+}
+
 
       nextBtn.disabled = true;
       prevBtn.disabled = true;

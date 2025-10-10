@@ -23,7 +23,7 @@
 
     const CHARACTERS = ['Maisy', 'Matt', 'David', 'Cass', 'Kathy', 'Lee'];
 
-    // Base questions (labels already cleaned)
+    // Base questions (existing ones)
     const QUESTIONS = [
       {
         text: `some objects are sitting in front of you. which one do you grab?`,
@@ -92,6 +92,66 @@
         ]
       },
     ];
+
+    // --- NEW QUESTIONS (labels EXACTLY as provided, brackets removed from display) ---
+    QUESTIONS.push(
+      {
+        text: `What's ur favorite class at school ?`,
+        options: [
+          { label: `Legal History`, scores: { Lee: 5 } },
+          { label: `Horseback riding`, scores: { Maisy: 5 } },
+          { label: `chess club`, scores: { Cass: 5 } },
+          { label: `Math, science, computer science and logic class  `, scores: { Matt: 5 } }, // note two spaces kept
+          { label: `predicting the future`, scores: { Kathy: 5 } },
+          { label: `Aviation`, scores: { David: 5 } },
+        ]
+      },
+      {
+        text: `Whats your element?`,
+        options: [
+          { label: `I'm not interested in things like this. i'm more interested in logical matters.`, scores: { Matt: 5 } },
+          { label: `air`, scores: { David: 5 } },
+          { label: `Water`, scores: { Kathy: 5 } },
+          { label: `fire`, scores: { Lee: 5 } },
+          { label: `Earth`, scores: { Maisy: 5 } },
+          { label: `as long as it has 64 squares i like it`, scores: { Cass: 5 } },
+        ]
+      },
+      {
+        text: `you just went up to the bar and the bartender said what do you want`,
+        options: [
+          { label: `1 paper plane please`, scores: { David: 5 } },
+          { label: `haymaker`, scores: { Maisy: 5 } },
+          { label: `No alcohol for me. It impairs my reasoning skills.`, scores: { Matt: 5 } },
+          { label: `The Queen's Gambit`, scores: { Cass: 5 } },
+          { label: `i'll have a cosmopolitan. its the city after all..!`, scores: { Lee: 5 } },
+          { label: `any crystal balls available?`, scores: { Kathy: 5 } },
+        ]
+      },
+      {
+        text: `whats your dream house ?`,
+        options: [
+          { label: `barn/Stable`, scores: { Maisy: 5 } },
+          { label: `a fortune teller's house`, scores: { Kathy: 5 } },
+          { label: `a chess lounge`, scores: { Cass: 5 } },
+          { label: `A science lab`, scores: { Matt: 5 } },
+          { label: `i'm not picky... maybe a dojo or a courthouse`, scores: { Lee: 5 } },
+          { label: `Top of a tower`, scores: { David: 5 } },
+        ]
+      },
+      {
+        text: `your dream vacation is:`,
+        options: [
+          { label: `-horseback riding in kentucky`, scores: { Maisy: 5 } },
+          { label: `-birthplace of Anatoly Yevgenyevich Karpov`, scores: { Cass: 5 } },
+          { label: `-anywhere as long as i get to be on an airplane :)`, scores: { David: 5 } },
+          { label: `-the circus to get my fortune told`, scores: { Kathy: 5 } },
+          { label: `-science world`, scores: { Matt: 5 } },
+          { label: `-definitely somewhere with strict laws . i don't want to end up in jail`, scores: { Lee: 5 } },
+        ]
+      }
+    );
+    // --- END NEW QUESTIONS ---
 
     // Create a shuffled copy of options for each question (once per run).
     let QUIZ = QUESTIONS.map(q => ({ ...q, options: shuffle(q.options) }));
@@ -237,7 +297,7 @@
     }
 
     function restartQuiz() {
-      // New shuffle each run
+      // new shuffle each run
       QUIZ = QUESTIONS.map(q => ({ ...q, options: shuffle(q.options) }));
       index = 0;
       answers.length = 0;
@@ -277,5 +337,4 @@
     }
   }
 })();
-
 

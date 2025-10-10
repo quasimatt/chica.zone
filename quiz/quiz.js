@@ -146,7 +146,7 @@
           { label: `-birthplace of Anatoly Yevgenyevich Karpov`, scores: { Cass: 5 } },
           { label: `-anywhere as long as i get to be on an airplane :)`, scores: { David: 5 } },
           { label: `-the circus to get my fortune told`, scores: { Kathy: 5 } },
-          { label: `-science world`, scores: { Matt: 5 } },
+          { label: `i'd rather stay at home working on my inventions. but if i had to go somewhere i'd say science world`, scores: { Matt: 5 } },
           { label: `-definitely somewhere with strict laws . i don't want to end up in jail`, scores: { Lee: 5 } },
         ]
       }

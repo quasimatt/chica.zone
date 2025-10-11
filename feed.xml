@@ -5,10 +5,23 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Sat, 11 Oct 2025 19:40:55 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 11 Oct 2025 19:43:11 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>Justice is &quot;Served&quot;, Much Like a Volleyball on the Beach</title>
+    <link>https://chica.zone/#11</link>
+    <guid isPermaLink="false">https://chica.zone/#11</guid>
+    <pubDate>Sat, 11 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Justice is &quot;Served&quot;, Much Like a Volleyball on the Beach</strong></p>
+    <p>Published: 2025-10-11</p>
+    <p><img src="https://chica.zone//comics/changa11.png" alt="Justice is &quot;Served&quot;, Much Like a Volleyball on the Beach" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa11.png" type="image/png" />
+  </item>
 
   <item>
     <title>The Beach Criminal</title>

@@ -10,7 +10,8 @@ const COMICS = {
   8: { image: '/comics/changa8.png', date: '2025-10-08', title: 'Chicas Assemble' },
   9: { image: '/comics/changa9.png', date: '2025-10-09', title: 'The Beach' },
   10: { image: '/comics/changa10.png', date: '2025-10-10', title: 'The Beach Criminal' },
-  11: { image: '/comics/changa11.png', date: '2025-10-11', title: 'Justice is "Served", Much Like a Volleyball on the Beach' }
+  11: { image: '/comics/changa11.png', date: '2025-10-11', title: 'Justice is "Served", Much Like a Volleyball on the Beach' },
+  12: { image: '/comics/changa12.png', date: '2025-10-12', title: 'A Song at the Beach' }
 };
 
 // Expose to browser and Node

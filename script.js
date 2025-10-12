@@ -345,12 +345,26 @@ function addPage(pageNum, imagePath, date) {
   if (currentPage === pageNum) loadComic(currentPage, { updateHash: true });
 }
 
+// 1) Preload newest → oldest, and skip the current page
 function preloadImages() {
-  Object.values(comics).forEach(comic => {
+  const pages = getExistingPagesSorted().sort((a, b) => b - a); // DESC
+  for (const n of pages) {
+    if (n === currentPage) continue; // don't compete with the one on screen
+    const c = comics[n];
+    if (!c || !c.image) continue;
     const img = new Image();
-    img.src = comic.image;
-  });
+    img.decoding = 'async';
+    img.src = c.image; // or toAbsolute(c.image)
+  }
 }
+
+// 2) Start preloading immediately after we kick off the current image (no 1s delay)
+document.addEventListener('DOMContentLoaded', function () {
+  colorizeHeaderOnce();
+  initializePage();
+  preloadImages(); // remove the setTimeout
+});
+
 
 // Allow Node scripts to import comics without breaking the browser
 if (typeof module !== 'undefined' && module.exports) {

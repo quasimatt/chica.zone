@@ -1,60 +1,50 @@
-const pageLabel = document.getElementById('page-label');
-
-function renderPage(n) {
-  const data = comics[n];
-  document.getElementById('comic-image').src = data.image;
-
-  // build combined label: "Page 7 — Glitter Spill"
-  const titleText = data.title ? `Page ${n} — ${data.title}` : `Page ${n}`;
-  pageLabel.textContent = titleText;
-
-  // update document <title> + meta description
-  document.title = `CHICA ZONE — ${data.title || `Page ${n}`}`;
-  let desc = document.querySelector('meta[name="description"]');
-  if (!desc) {
-    desc = document.createElement('meta');
-    desc.name = 'description';
-    document.head.appendChild(desc);
-  }
-  desc.setAttribute('content', `${data.title || ''} — ${data.date || ''}`);
+// --- helpers (absolute URL + one-time cache bust for fresh deploys) ---
+function toAbsolute(src) {
+  if (!src) return '';
+  if (/^https?:\/\//i.test(src) || src.startsWith('/')) return src;
+  return '/' + src.replace(/^\/+/, '');
+}
+function cacheBust(url) {
+  const v = window.BUILD_VERSION || '2025-10-12a';
+  return url + (url.includes('?') ? '&' : '?') + 'v=' + v;
 }
 
-/*********************************
- * 2) COMIC VIEWER CONFIG & STATE
- *********************************/
-// Existing comics ONLY — navigation will be limited to these keys.
-// Use data injected by comics.data.js
+// single source of truth (populated by comics.data.js)
 const comics = (typeof window !== 'undefined' && window.CHICA_COMICS) ? window.CHICA_COMICS : {};
-
 let currentPage = null;
+
+// (legacy) unused function kept to avoid reference errors elsewhere
+const pageLabel = document.getElementById('page-label');
+function renderPage(n) {
+  const data = comics[n];
+  const imgEl = document.getElementById('comic-image');
+  if (!data || !imgEl) return;
+  imgEl.src = toAbsolute(data.image);
+  const titleText = data?.title ? `Page ${n} — ${data.title}` : `Page ${n}`;
+  if (pageLabel) pageLabel.textContent = titleText;
+  document.title = `CHICA ZONE — ${data?.title || `Page ${n}`}`;
+  let desc = document.querySelector('meta[name="description"]');
+  if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
+  desc.setAttribute('content', `${data?.title || ''} — ${data?.date || ''}`);
+}
 
 /***********************
  * 1) RANDOMIZED HEADER
  ***********************/
 function colorizeHeaderOnce() {
   const target = document.getElementById("rainbow-text");
-  if (!target) return;
-  if (target.dataset.colored === "true") return;
-
-  const palette = [
-    "hotpink", "skyblue", "limegreen", "gold", "violet",
-    "tomato", "orange", "turquoise", "orchid", "lightcoral"
-  ];
-
+  if (!target || target.dataset.colored === "true") return;
+  const palette = ["hotpink","skyblue","limegreen","gold","violet","tomato","orange","turquoise","orchid","lightcoral"];
   const original = target.dataset.originalText || target.textContent;
   target.dataset.originalText = original;
-
   const frag = document.createDocumentFragment();
   for (const ch of original) {
     const span = document.createElement("span");
     const isSpace = ch === " ";
-    span.textContent = isSpace ? "\u00A0" : ch; // preserve spacing
-    if (!isSpace) {
-      span.style.color = palette[Math.floor(Math.random() * palette.length)];
-    }
+    span.textContent = isSpace ? "\u00A0" : ch;
+    if (!isSpace) span.style.color = palette[Math.floor(Math.random() * palette.length)];
     frag.appendChild(span);
   }
-
   target.textContent = "";
   target.appendChild(frag);
   target.dataset.colored = "true";
@@ -64,9 +54,16 @@ function colorizeHeaderOnce() {
  * 3) INITIAL PAGE LOADING
  **************************/
 document.addEventListener('DOMContentLoaded', function () {
+  // if data is missing, fail clearly (prevents silent no-op)
+  if (!comics || !Object.keys(comics).length) {
+    console.error('[viewer] No comics loaded. Make sure /comics.data.js is included BEFORE this script.');
+    const img = document.getElementById('comic-image');
+    if (img) { img.src = createPlaceholderImage(); img.alt = 'No data loaded'; }
+    return;
+  }
   colorizeHeaderOnce();
   initializePage();
-  setTimeout(preloadImages, 1000);
+  preloadImages(); // start right away (doesn't race the active page)
 });
 
 function initializePage() {
@@ -74,37 +71,23 @@ function initializePage() {
   const hash = window.location.hash;
 
   let pageNum = null;
-  let shouldWriteHash = false; // keep homepage clean unless a page was explicitly asked
+  let shouldWriteHash = false;
 
-  // Prefer hash (#5 or #page5)
   if (hash) {
     const m = hash.match(/#(?:page)?(\d+)$/);
     if (m) {
       const n = parseInt(m[1], 10);
-      if (pageExists(n)) {
-        pageNum = n;
-        shouldWriteHash = true; // maintain hash if it was explicitly set
-      }
+      if (pageExists(n)) { pageNum = n; shouldWriteHash = true; }
     }
   }
-
-  // Or a path like /page/5 or /5
   if (!pageNum) {
     const m = path.match(/\/(?:page\/)?(\d+)\/?$/) || path.match(/\/(\d+)$/);
     if (m) {
       const n = parseInt(m[1], 10);
-      if (pageExists(n)) {
-        pageNum = n;
-        shouldWriteHash = true;
-      }
+      if (pageExists(n)) { pageNum = n; shouldWriteHash = true; }
     }
   }
-
-  // Default: load the latest existing page BUT DO NOT write hash on homepage
-  if (!pageNum) {
-    pageNum = getLatestAvailablePage();
-    shouldWriteHash = false;
-  }
+  if (!pageNum) { pageNum = getLatestAvailablePage(); shouldWriteHash = false; }
 
   currentPage = pageNum;
   loadComic(currentPage, { updateHash: shouldWriteHash });
@@ -120,12 +103,8 @@ function formatDateToDisplay(dateStr) {
     const [y, m, d] = dateStr.split('-').map(Number);
     const dt = new Date(y, m - 1, d);
     if (isNaN(dt.getTime())) return 'Unknown Date';
-    return dt.toLocaleDateString('en-US', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-    });
-  } catch {
-    return 'Unknown Date';
-  }
+    return dt.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  } catch { return 'Unknown Date'; }
 }
 
 function createPlaceholderImage() {
@@ -133,75 +112,45 @@ function createPlaceholderImage() {
     <svg width="800" height="1000" xmlns="http://www.w3.org/2000/svg">
       <rect width="100%" height="100%" fill="#ffffff"/>
       <rect x="20" y="20" width="760" height="960" fill="none" stroke="#eeeeee" stroke-width="2"/>
-
-      <!-- line 1 -->
-      <text x="50%" y="48%" text-anchor="middle"
-            font-family="Love Ya Like A Sister, cursive"
-            font-size="20" fill="#444444">
-        sometimes it takes a while for pages to load:/
-      </text>
-
-      <!-- line 2 -->
-      <text x="50%" y="56%" text-anchor="middle"
-            font-family="Love Ya Like A Sister, cursive"
-            font-size="18" fill="#777777">
-        your changa will appear soon
-      </text>
+      <text x="50%" y="48%" text-anchor="middle" font-family="Love Ya Like A Sister, cursive" font-size="20" fill="#444">sometimes it takes a while for pages to load:/</text>
+      <text x="50%" y="56%" text-anchor="middle" font-family="Love Ya Like A Sister, cursive" font-size="18" fill="#777">your changa will appear soon</text>
     </svg>
   `;
-
-  // Safe base64 encoding for any characters
-  const base64 = btoa(unescape(encodeURIComponent(svg)));
-  return `data:image/svg+xml;base64,${base64}`;
+  return `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`;
 }
-
 
 /***********************
  * 5) COMIC RENDERING
  ***********************/
 function loadComic(pageNum, opts = { updateHash: true }) {
-  if (!pageExists(pageNum)) {
-    console.warn("Attempted to load non-existing page:", pageNum);
-    return;
-  }
+  if (!pageExists(pageNum)) { console.warn("Attempted to load non-existing page:", pageNum); return; }
 
-  const comic = comics[pageNum];
+  const comic = comics[pageNum] || {};
   const imageElement = document.getElementById('comic-image');
   const titleElement = document.getElementById('comic-title');
   const dateElement  = document.getElementById('comic-date');
 
-  // --- show title only, no page number ---
   if (titleElement) titleElement.textContent = comic.title || '';
+  if (dateElement)  dateElement.textContent  = formatDateToDisplay(comic.date);
 
-  // --- date on its own smaller line ---
-  if (dateElement) dateElement.textContent = formatDateToDisplay(comic.date);
-
-  // --- update tab title + meta description ---
   document.title = `CHICA ZONE — ${comic.title || `Page ${pageNum}`}`;
   let desc = document.querySelector('meta[name="description"]');
-  if (!desc) {
-    desc = document.createElement('meta');
-    desc.name = 'description';
-    document.head.appendChild(desc);
-  }
+  if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
   desc.setAttribute('content', `${comic.title || `Page ${pageNum}`} — ${comic.date || ''}`);
 
-  // --- load image with graceful fallback ---
-  const img = new Image();
-  img.onload = function () {
-    if (imageElement) {
-      imageElement.src = comic.image;
-      imageElement.alt = comic.title ? `${comic.title} — Chica Mob` : `Page ${pageNum} — Chica Mob`;
-    }
-  };
-  img.onerror = function () {
-    console.warn(`Failed to load image: ${comic.image}`);
-    if (imageElement) {
+  if (imageElement) {
+    const src = cacheBust(toAbsolute(comic.image));
+    imageElement.setAttribute('fetchpriority','high');
+    imageElement.decoding = 'async';
+    imageElement.loading  = 'eager';
+    imageElement.alt = comic.title ? `${comic.title} — Chica Mob` : `Page ${pageNum} — Chica Mob`;
+    imageElement.onerror = function () {
+      console.warn(`[viewer] Failed to load: ${src}`);
       imageElement.src = createPlaceholderImage();
       imageElement.alt = `${comic.title || `Page ${pageNum}`} - Image not available`;
-    }
-  };
-  img.src = comic.image;
+    };
+    imageElement.src = src; // direct set (no preloader race)
+  }
 
   updateNavigationButtons();
   updatePagePicker(pageNum);
@@ -211,13 +160,13 @@ function loadComic(pageNum, opts = { updateHash: true }) {
 /*************************
  * 6) NAV / URL / PICKERS
  *************************/
-// Only use existing page numbers
 function getExistingPagesSorted() {
-  return Object.keys(comics).map(n => parseInt(n, 10)).sort((a, b) => a - b);
+  return Object.keys(comics)
+    .map(n => parseInt(n, 10))
+    .filter(Number.isFinite)
+    .sort((a, b) => a - b);
 }
-function pageExists(n) {
-  return Object.prototype.hasOwnProperty.call(comics, n);
-}
+function pageExists(n) { return Object.prototype.hasOwnProperty.call(comics, n); }
 
 function getPreviousPage(pageNum) {
   const pages = getExistingPagesSorted();
@@ -231,13 +180,12 @@ function getNextPage(pageNum) {
 }
 function getLatestAvailablePage() {
   const pages = getExistingPagesSorted();
-  return pages.length ? pages[pages.length - 1] : 1;
+  return pages.length ? Math.max(...pages) : 1;
 }
 
 function updateNavigationButtons() {
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
-
   if (prevBtn) {
     const prevPage = getPreviousPage(currentPage);
     prevBtn.disabled = !prevPage;
@@ -252,40 +200,24 @@ function updateNavigationButtons() {
 
 function goToLatest() {
   const latest = getLatestAvailablePage();
-  if (pageExists(latest)) {
-    currentPage = latest;
-    loadComic(currentPage, { updateHash: true });
-  }
+  if (pageExists(latest)) { currentPage = latest; loadComic(currentPage, { updateHash: true }); }
 }
-
 function goToPage(pageValue) {
   if (!pageValue) return;
   const pageNum = parseInt(pageValue, 10);
-  if (pageExists(pageNum)) {
-    currentPage = pageNum;
-    loadComic(currentPage, { updateHash: true });
-  } else {
-    console.warn("Page does not exist:", pageNum);
-  }
+  if (pageExists(pageNum)) { currentPage = pageNum; loadComic(currentPage, { updateHash: true }); }
+  else { console.warn("Page does not exist:", pageNum); }
 }
-
 function navigateComic(direction) {
   let newPage = null;
   if (direction === 'prev') newPage = getPreviousPage(currentPage);
   if (direction === 'next') newPage = getNextPage(currentPage);
-  if (newPage && pageExists(newPage)) {
-    currentPage = newPage;
-    loadComic(currentPage, { updateHash: true });
-  }
+  if (newPage && pageExists(newPage)) { currentPage = newPage; loadComic(currentPage, { updateHash: true }); }
 }
-
 function updateURL(pageNum) {
   const newHash = `#${pageNum}`;
-  if (window.location.hash !== newHash) {
-    window.location.hash = newHash;
-  }
+  if (window.location.hash !== newHash) window.location.hash = newHash;
 }
-
 function setupPagePicker() {
   const pageInput = document.getElementById('page-input');
   if (pageInput) {
@@ -304,36 +236,19 @@ function updatePagePicker(pageNum) {
  * 7) EVENT LISTENERS
  **********************/
 window.addEventListener('hashchange', function () {
-  const hash = window.location.hash;
-  const m = hash.match(/#(\d+)$/);
+  const m = window.location.hash.match(/#(\d+)$/);
   if (m) {
     const n = parseInt(m[1], 10);
-    if (pageExists(n) && n !== currentPage) {
-      currentPage = n;
-      loadComic(currentPage, { updateHash: true });
-    }
+    if (pageExists(n) && n !== currentPage) { currentPage = n; loadComic(currentPage, { updateHash: true }); }
   }
 });
-
 document.addEventListener('keydown', function (event) {
   const t = event.target;
   if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-
-  if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'A') {
-    event.preventDefault();
-    navigateComic('prev');
-  } else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'D') {
-    event.preventDefault();
-    navigateComic('next');
-  } else if (event.key === 'Home') {
-    event.preventDefault();
-    const first = getExistingPagesSorted()[0] || 1;
-    currentPage = first;
-    loadComic(currentPage, { updateHash: true });
-  } else if (event.key === 'End') {
-    event.preventDefault();
-    goToLatest();
-  }
+  if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'A') { event.preventDefault(); navigateComic('prev'); }
+  else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'D') { event.preventDefault(); navigateComic('next'); }
+  else if (event.key === 'Home') { event.preventDefault(); const first = getExistingPagesSorted()[0] || 1; currentPage = first; loadComic(currentPage, { updateHash: true }); }
+  else if (event.key === 'End')  { event.preventDefault(); goToLatest(); }
 });
 
 /********************
@@ -345,31 +260,25 @@ function addPage(pageNum, imagePath, date) {
   if (currentPage === pageNum) loadComic(currentPage, { updateHash: true });
 }
 
-// 1) Preload newest → oldest, and skip the current page
+// newest → oldest, skip current, use the SAME url builder as main (avoids double downloads)
 function preloadImages() {
-  const pages = getExistingPagesSorted().sort((a, b) => b - a); // DESC
+  const pages = getExistingPagesSorted().sort((a, b) => b - a);
   for (const n of pages) {
-    if (n === currentPage) continue; // don't compete with the one on screen
+    if (n === currentPage) continue;
     const c = comics[n];
     if (!c || !c.image) continue;
     const img = new Image();
     img.decoding = 'async';
-    img.src = c.image; // or toAbsolute(c.image)
+    img.loading = 'lazy';
+    img.src = cacheBust(toAbsolute(c.image));
   }
 }
-
-// 2) Start preloading immediately after we kick off the current image (no 1s delay)
-document.addEventListener('DOMContentLoaded', function () {
-  colorizeHeaderOnce();
-  initializePage();
-  preloadImages(); // remove the setTimeout
-});
-
 
 // Allow Node scripts to import comics without breaking the browser
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { comics };
 }
+
 
 
 

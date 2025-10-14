@@ -5,10 +5,23 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Tue, 14 Oct 2025 15:45:21 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 14 Oct 2025 15:48:36 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>A Lesson from Lee</title>
+    <link>https://chica.zone/#14</link>
+    <guid isPermaLink="false">https://chica.zone/#14</guid>
+    <pubDate>Tue, 14 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>A Lesson from Lee</strong></p>
+    <p>Published: 2025-10-14</p>
+    <p><img src="https://chica.zone//comics/changa14.png" alt="A Lesson from Lee" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa14.png" type="image/png" />
+  </item>
 
   <item>
     <title>The Dark Stallion</title>

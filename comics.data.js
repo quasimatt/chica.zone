@@ -12,7 +12,8 @@ const COMICS = {
   10: { image: '/comics/changa10.png', date: '2025-10-10', title: 'The Beach Criminal' },
   11: { image: '/comics/changa11.png', date: '2025-10-11', title: 'Justice is "Served", Much Like a Volleyball on the Beach' },
   12: { image: '/comics/changa12.png', date: '2025-10-12', title: 'A Song at the Beach' },
-  13: { image: '/comics/changa13.png', date: '2025-10-13', title: 'The Dark Stallion' }
+  13: { image: '/comics/changa13.png', date: '2025-10-13', title: 'The Dark Stallion' },
+  14: { image: '/comics/changa14.png', date: '2025-10-14', title: 'A Lesson from Lee'
 };
 
 // Expose to browser and Node

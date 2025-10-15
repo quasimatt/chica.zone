@@ -5,10 +5,23 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Wed, 15 Oct 2025 13:42:09 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 15 Oct 2025 13:43:48 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>Kathy&apos;s Memory</title>
+    <link>https://chica.zone/#15</link>
+    <guid isPermaLink="false">https://chica.zone/#15</guid>
+    <pubDate>Wed, 15 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Kathy's Memory</strong></p>
+    <p>Published: 2025-10-15</p>
+    <p><img src="https://chica.zone//comics/changa15.png" alt="Kathy's Memory" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa15.png" type="image/png" />
+  </item>
 
   <item>
     <title>A Lesson from Lee</title>

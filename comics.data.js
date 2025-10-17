@@ -16,7 +16,7 @@ const COMICS = {
   14: { image: '/comics/changa14.png', date: '2025-10-14', title: 'A Lesson from Lee' },
   15: { image: '/comics/changa15.png', date: '2025-10-15', title: "Kathy's Memory" },
   16: { image: '/comics/changa16.png', date: '2025-10-16', title: "The Dark Potion" },
-  17: { image: '/comics/changa17.png', date: '2025-10-17', title: "Chica HQ" }
+  17: { image: '/comics/changa17.png', date: '2025-10-17', title: "The Secret of Variety Coffee" }
 };
 
 // Expose to browser and Node

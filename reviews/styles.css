@@ -1,0 +1,63 @@
+/* review bubbles */
+.review {
+  position: relative;
+  background: #fff;
+  border: 2px solid #ffd1ec;           /* soft pink outline */
+  border-radius: 20px;                  /* bubble shape */
+  padding: 1rem 1.25rem 0.75rem;
+  margin: 1.25rem 0;
+  box-shadow: 0 6px 16px rgba(255, 128, 186, 0.15);
+}
+
+/* little bubble tail */
+.review::after {
+  content: "";
+  position: absolute;
+  left: 18px;                           /* move tail horizontally */
+  bottom: -10px;                        /* below the bubble */
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-left: 2px solid #ffd1ec;
+  border-bottom: 2px solid #ffd1ec;
+  transform: rotate(45deg);
+}
+
+/* text + author */
+.review-text {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.5;
+}
+
+.review-author {
+  font-family: 'Love Ya Like A Sister', cursive, system-ui, sans-serif;
+  font-weight: 700;
+  text-align: right;                    /* push to the right */
+  color: #ff4fa3;                       /* brighter pink for prominence */
+  margin-top: 0.25rem;
+}
+
+/* spacing under heading and home link */
+h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* optional: style for the home link you added earlier */
+.home-link {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  text-decoration: none;
+  color: #ff4fa3;
+}
+.home-link:hover { text-decoration: underline; }
+
+/* responsive polish */
+@media (min-width: 700px) {
+  .review {
+    padding: 1.1rem 1.4rem 0.9rem;
+  }
+  .review::after {
+    left: 28px;
+  }
+}

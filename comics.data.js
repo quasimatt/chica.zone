@@ -18,7 +18,8 @@ const COMICS = {
   16: { image: '/comics/changa16.png', date: '2025-10-16', title: "The Dark Potion" },
   17: { image: '/comics/changa17.png', date: '2025-10-17', title: "The Secret of Variety Coffee" },
   18: { image: '/comics/changa18.png', date: '2025-10-18', title: "Time to Relax" },
-  19: { image: '/comics/changa19.png', date: '2025-10-19', title: "Order Up!" }
+  19: { image: '/comics/changa19.png', date: '2025-10-19', title: "Order Up!" },
+  20: { image: '/comics/changa20.png', date: '2025-10-20', title: "What's Manga?" }
 };
 
 // Expose to browser and Node

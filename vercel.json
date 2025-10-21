@@ -1,0 +1,16 @@
+{
+  "headers": [
+    {
+      "source": "/(script|comics\\.data|quiz/quiz)\\.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/comics/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

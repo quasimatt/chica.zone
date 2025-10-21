@@ -4,8 +4,9 @@ function toAbsolute(src) {
   if (/^https?:\/\//i.test(src) || src.startsWith('/')) return src;
   return '/' + src.replace(/^\/+/, '');
 }
+
 function cacheBust(url) {
-  const v = window.BUILD_VERSION || '2025-10-12a';
+  const v = window.BUILD_VERSION || '1';
   return url + (url.includes('?') ? '&' : '?') + 'v=' + v;
 }
 

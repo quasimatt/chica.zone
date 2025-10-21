@@ -91,6 +91,16 @@ function initializePage() {
   if (!pageNum) { pageNum = getLatestAvailablePage(); shouldWriteHash = false; }
 
   currentPage = pageNum;
+  (function preloadHero() {
+  const c = comics[pageNum];
+  if (!c || !c.image) return;
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = cacheBust(toAbsolute(c.image));
+  document.head.appendChild(link);
+})();
+
   loadComic(currentPage, { updateHash: shouldWriteHash });
   setupPagePicker();
 }
@@ -138,6 +148,40 @@ function loadComic(pageNum, opts = { updateHash: true }) {
   let desc = document.querySelector('meta[name="description"]');
   if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
   desc.setAttribute('content', `${comic.title || `Page ${pageNum}`} — ${comic.date || ''}`);
+  // hint browser about likely next/prev
+(function preloadNeighbors() {
+  const prev = getPreviousPage(pageNum);
+  const next = getNextPage(pageNum);
+  const seen = new Set(); // avoid dup hints
+  [prev, next].forEach(n => {
+    if (!n || seen.has(n)) return;
+    seen.add(n);
+    const c = comics[n];
+    if (!c || !c.image) return;
+    const link = document.createElement('link');
+    link.rel = 'prefetch';         // low-priority
+    link.as  = 'image';
+    link.href = cacheBust(toAbsolute(c.image));
+    document.head.appendChild(link);
+  });
+})();
+// hint browser about likely next/prev
+(function preloadNeighbors() {
+  const prev = getPreviousPage(pageNum);
+  const next = getNextPage(pageNum);
+  const seen = new Set(); // avoid dup hints
+  [prev, next].forEach(n => {
+    if (!n || seen.has(n)) return;
+    seen.add(n);
+    const c = comics[n];
+    if (!c || !c.image) return;
+    const link = document.createElement('link');
+    link.rel = 'prefetch';         // low-priority
+    link.as  = 'image';
+    link.href = cacheBust(toAbsolute(c.image));
+    document.head.appendChild(link);
+  });
+})();
 
   if (imageElement) {
     const src = cacheBust(toAbsolute(comic.image));

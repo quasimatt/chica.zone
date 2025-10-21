@@ -174,16 +174,15 @@ async function loadComic(pageNum, opts = { updateHash: true }) {
     imageElement.src = createPlaceholderImage();
   }
 
-  // Prepare URLs (keep your cache-bust)
-  const raw = toAbsolute(comic.image);
-  const src = cacheBust(raw);
+  // Prepare URL (keep your cache-bust)
+  const src = cacheBust(toAbsolute(comic.image));
 
   // 3) Decode the target image off-thread, then swap in atomically
   try {
     const probe = new Image();
     probe.decoding = 'async';
     probe.loading  = 'eager';
-    // swap in after decode to avoid partial paint jank
+
     const decoded = new Promise((resolve, reject) => {
       probe.onload = resolve;
       probe.onerror = reject;
@@ -191,17 +190,14 @@ async function loadComic(pageNum, opts = { updateHash: true }) {
     probe.src = src;
 
     if (probe.decode) {
-      // Most modern browsers: non-blocking decode
       await probe.decode().catch(() => decoded);
     } else {
-      // Fallback path
       await decoded;
     }
 
     // If user clicked again meanwhile, bail
     if (mySeq !== _navSeq) return;
 
-    // Swap to the real image in a microtask for smoothness
     requestAnimationFrame(() => {
       if (imageElement) {
         imageElement.src = src;
@@ -232,137 +228,6 @@ async function loadComic(pageNum, opts = { updateHash: true }) {
   if (opts.updateHash) updateURL(pageNum);
 }
 
-// hint browser about likely next/prev
-(function preloadNeighbors() {
-  const prev = getPreviousPage(pageNum);
-  const next = getNextPage(pageNum);
-  const seen = new Set(); // avoid dup hints
-  [prev, next].forEach(n => {
-    if (!n || seen.has(n)) return;
-    seen.add(n);
-    const c = comics[n];
-    if (!c || !c.image) return;
-    const link = document.createElement('link');
-    link.rel = 'prefetch';         // low-priority
-    link.as  = 'image';
-    link.href = cacheBust(toAbsolute(c.image));
-    document.head.appendChild(link);
-  });
-})();
-
-  if (imageElement) {
-    const src = cacheBust(toAbsolute(comic.image));
-    imageElement.setAttribute('fetchpriority','high');
-    imageElement.decoding = 'async';
-    imageElement.loading  = 'eager';
-    imageElement.alt = comic.title ? `${comic.title} — Chica Mob` : `Page ${pageNum} — Chica Mob`;
-    imageElement.onerror = function () {
-      console.warn(`[viewer] Failed to load: ${src}`);
-      imageElement.src = createPlaceholderImage();
-      imageElement.alt = `${comic.title || `Page ${pageNum}`} - Image not available`;
-    };
-    imageElement.src = src; // direct set (no preloader race)
-  }
-
-  updateNavigationButtons();
-  updatePagePicker(pageNum);
-  if (opts.updateHash) updateURL(pageNum);
-}
-
-/*************************
- * 6) NAV / URL / PICKERS
- *************************/
-function getExistingPagesSorted() {
-  return Object.keys(comics)
-    .map(n => parseInt(n, 10))
-    .filter(Number.isFinite)
-    .sort((a, b) => a - b);
-}
-function pageExists(n) { return Object.prototype.hasOwnProperty.call(comics, n); }
-
-function getPreviousPage(pageNum) {
-  const pages = getExistingPagesSorted();
-  const idx = pages.indexOf(pageNum);
-  return (idx > 0) ? pages[idx - 1] : null;
-}
-function getNextPage(pageNum) {
-  const pages = getExistingPagesSorted();
-  const idx = pages.indexOf(pageNum);
-  return (idx >= 0 && idx < pages.length - 1) ? pages[idx + 1] : null;
-}
-function getLatestAvailablePage() {
-  const pages = getExistingPagesSorted();
-  return pages.length ? Math.max(...pages) : 1;
-}
-
-function updateNavigationButtons() {
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  if (prevBtn) {
-    const prevPage = getPreviousPage(currentPage);
-    prevBtn.disabled = !prevPage;
-    prevBtn.innerHTML = prevPage ? `← Previous Page (${prevPage})` : '← Previous Page';
-  }
-  if (nextBtn) {
-    const nextPage = getNextPage(currentPage);
-    nextBtn.disabled = !nextPage;
-    nextBtn.innerHTML = nextPage ? `Next Page (${nextPage}) →` : 'Next Page →';
-  }
-}
-
-function goToLatest() {
-  const latest = getLatestAvailablePage();
-  if (pageExists(latest)) { currentPage = latest; loadComic(currentPage, { updateHash: true }); }
-}
-function goToPage(pageValue) {
-  if (!pageValue) return;
-  const pageNum = parseInt(pageValue, 10);
-  if (pageExists(pageNum)) { currentPage = pageNum; loadComic(currentPage, { updateHash: true }); }
-  else { console.warn("Page does not exist:", pageNum); }
-}
-function navigateComic(direction) {
-  let newPage = null;
-  if (direction === 'prev') newPage = getPreviousPage(currentPage);
-  if (direction === 'next') newPage = getNextPage(currentPage);
-  if (newPage && pageExists(newPage)) { currentPage = newPage; loadComic(currentPage, { updateHash: true }); }
-}
-function updateURL(pageNum) {
-  const newHash = `#${pageNum}`;
-  if (window.location.hash !== newHash) window.location.hash = newHash;
-}
-function setupPagePicker() {
-  const pageInput = document.getElementById('page-input');
-  if (pageInput) {
-    const pages = getExistingPagesSorted();
-    pageInput.min = pages.length ? pages[0] : 1;
-    pageInput.max = pages.length ? pages[pages.length - 1] : 1;
-    pageInput.placeholder = 'Page #';
-  }
-}
-function updatePagePicker(pageNum) {
-  const pageInput = document.getElementById('page-input');
-  if (pageInput) pageInput.value = pageNum;
-}
-
-/**********************
- * 7) EVENT LISTENERS
- **********************/
-window.addEventListener('hashchange', function () {
-  const m = window.location.hash.match(/#(\d+)$/);
-  if (m) {
-    const n = parseInt(m[1], 10);
-    if (pageExists(n) && n !== currentPage) { currentPage = n; loadComic(currentPage, { updateHash: true }); }
-  }
-});
-document.addEventListener('keydown', function (event) {
-  const t = event.target;
-  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-  if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'A') { event.preventDefault(); navigateComic('prev'); }
-  else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'D') { event.preventDefault(); navigateComic('next'); }
-  else if (event.key === 'Home') { event.preventDefault(); const first = getExistingPagesSorted()[0] || 1; currentPage = first; loadComic(currentPage, { updateHash: true }); }
-  else if (event.key === 'End')  { event.preventDefault(); goToLatest(); }
-});
-
 /********************
  * 8) IMAGE PRELOAD
  ********************/
@@ -385,6 +250,7 @@ function preloadImages() {
     img.src = cacheBust(toAbsolute(c.image));
   }
 }
+
 
 // Allow Node scripts to import comics without breaking the browser
 if (typeof module !== 'undefined' && module.exports) {

@@ -9,6 +9,18 @@ function cacheBust(url) {
   const v = window.BUILD_VERSION || '1';
   return url + (url.includes('?') ? '&' : '?') + 'v=' + v;
 }
+// lets us ignore stale loads if user clicks quickly
+let _navSeq = 0;
+
+function schedulePrefetch(urls = []) {
+  urls.forEach(u => {
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.as = 'image';
+    link.href = u;
+    document.head.appendChild(link);
+  });
+}
 
 // single source of truth (populated by comics.data.js)
 const comics = (typeof window !== 'undefined' && window.CHICA_COMICS) ? window.CHICA_COMICS : {};
@@ -133,7 +145,7 @@ function createPlaceholderImage() {
 /***********************
  * 5) COMIC RENDERING
  ***********************/
-function loadComic(pageNum, opts = { updateHash: true }) {
+async function loadComic(pageNum, opts = { updateHash: true }) {
   if (!pageExists(pageNum)) { console.warn("Attempted to load non-existing page:", pageNum); return; }
 
   const comic = comics[pageNum] || {};
@@ -141,6 +153,10 @@ function loadComic(pageNum, opts = { updateHash: true }) {
   const titleElement = document.getElementById('comic-title');
   const dateElement  = document.getElementById('comic-date');
 
+  // bump token so older decodes won't update UI
+  const mySeq = ++_navSeq;
+
+  // 1) Update lightweight UI immediately
   if (titleElement) titleElement.textContent = comic.title || '';
   if (dateElement)  dateElement.textContent  = formatDateToDisplay(comic.date);
 
@@ -148,23 +164,74 @@ function loadComic(pageNum, opts = { updateHash: true }) {
   let desc = document.querySelector('meta[name="description"]');
   if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
   desc.setAttribute('content', `${comic.title || `Page ${pageNum}`} — ${comic.date || ''}`);
-  // hint browser about likely next/prev
-(function preloadNeighbors() {
+
+  // 2) Paint a tiny placeholder *now* so the page feels responsive
+  if (imageElement) {
+    imageElement.setAttribute('fetchpriority','high');
+    imageElement.decoding = 'async';
+    imageElement.loading  = 'eager';
+    imageElement.alt = comic.title ? `${comic.title} — Chica Mob` : `Page ${pageNum} — Chica Mob`;
+    imageElement.src = createPlaceholderImage();
+  }
+
+  // Prepare URLs (keep your cache-bust)
+  const raw = toAbsolute(comic.image);
+  const src = cacheBust(raw);
+
+  // 3) Decode the target image off-thread, then swap in atomically
+  try {
+    const probe = new Image();
+    probe.decoding = 'async';
+    probe.loading  = 'eager';
+    // swap in after decode to avoid partial paint jank
+    const decoded = new Promise((resolve, reject) => {
+      probe.onload = resolve;
+      probe.onerror = reject;
+    });
+    probe.src = src;
+
+    if (probe.decode) {
+      // Most modern browsers: non-blocking decode
+      await probe.decode().catch(() => decoded);
+    } else {
+      // Fallback path
+      await decoded;
+    }
+
+    // If user clicked again meanwhile, bail
+    if (mySeq !== _navSeq) return;
+
+    // Swap to the real image in a microtask for smoothness
+    requestAnimationFrame(() => {
+      if (imageElement) {
+        imageElement.src = src;
+        imageElement.alt = comic.title ? `${comic.title} — Chica Mob` : `Page ${pageNum} — Chica Mob`;
+      }
+    });
+  } catch (e) {
+    if (mySeq !== _navSeq) return;
+    console.warn('[viewer] image failed, showing placeholder:', src);
+    if (imageElement) {
+      imageElement.src = createPlaceholderImage();
+      imageElement.alt = `${comic.title || `Page ${pageNum}`} - Image not available`;
+    }
+  }
+
+  // 4) Prefetch neighbors at low priority so arrow nav feels instant
   const prev = getPreviousPage(pageNum);
   const next = getNextPage(pageNum);
-  const seen = new Set(); // avoid dup hints
-  [prev, next].forEach(n => {
-    if (!n || seen.has(n)) return;
-    seen.add(n);
-    const c = comics[n];
-    if (!c || !c.image) return;
-    const link = document.createElement('link');
-    link.rel = 'prefetch';         // low-priority
-    link.as  = 'image';
-    link.href = cacheBust(toAbsolute(c.image));
-    document.head.appendChild(link);
-  });
-})();
+  const prefetchUrls = [prev, next]
+    .filter(Boolean)
+    .map(n => comics[n])
+    .filter(c => c && c.image)
+    .map(c => cacheBust(toAbsolute(c.image)));
+  schedulePrefetch(prefetchUrls);
+
+  updateNavigationButtons();
+  updatePagePicker(pageNum);
+  if (opts.updateHash) updateURL(pageNum);
+}
+
 // hint browser about likely next/prev
 (function preloadNeighbors() {
   const prev = getPreviousPage(pageNum);

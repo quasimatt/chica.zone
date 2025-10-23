@@ -5,20 +5,20 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Thu, 23 Oct 2025 15:04:43 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 23 Oct 2025 15:09:18 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
 
   <item>
-    <title>The Mob&apos;s Mending</title>
+    <title>A Quiet Reflection</title>
     <link>https://chica.zone/#23</link>
     <guid isPermaLink="false">https://chica.zone/#23</guid>
     <pubDate>Thu, 23 Oct 2025 12:00:00 GMT</pubDate>
     <description><![CDATA[
-    <p><strong>The Mob's Mending</strong></p>
+    <p><strong>A Quiet Reflection</strong></p>
     <p>Published: 2025-10-23</p>
-    <p><img src="https://chica.zone//comics/changa23.png" alt="The Mob's Mending" /></p>
+    <p><img src="https://chica.zone//comics/changa23.png" alt="A Quiet Reflection" /></p>
   ]]></description>
     <enclosure url="https://chica.zone//comics/changa23.png" type="image/png" />
   </item>

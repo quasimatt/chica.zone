@@ -21,7 +21,8 @@ const COMICS = {
   19: { image: '/comics/changa19.png', date: '2025-10-19', title: "Order Up!" },
   20: { image: '/comics/changa20.png', date: '2025-10-20', title: "Cass's Big Question" },
   21: { image: '/comics/changa21.png', date: '2025-10-21', title: "David's Diagnosis" },
-  22: { image: '/comics/changa22.png', date: '2025-10-22', title: "Maisy's Medication Malfunction" }
+  22: { image: '/comics/changa22.png', date: '2025-10-22', title: "Maisy's Medication Malfunction" },
+  23: { image: '/comics/changa23.png', date: '2025-10-23', title: "The Mob's Mending" }
 };
 
 // Expose to browser and Node

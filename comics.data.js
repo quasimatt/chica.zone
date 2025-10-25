@@ -23,7 +23,8 @@ const COMICS = {
   21: { image: '/comics/changa21.png', date: '2025-10-21', title: "David's Diagnosis" },
   22: { image: '/comics/changa22.png', date: '2025-10-22', title: "Maisy's Medication Malfunction" },
   23: { image: '/comics/changa23.png', date: '2025-10-23', title: "A Quiet Reflection" },
-  24: { image: '/comics/changa24.png', date: '2025-10-24', title: "Matt's Miscalculation" }
+  24: { image: '/comics/changa24.png', date: '2025-10-24', title: "Matt's Miscalculation" },
+  25: { image: '/comics/changa25.png', date: '2025-10-25', title: "Chicos Nuevos" }
 };
 
 // Expose to browser and Node

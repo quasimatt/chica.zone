@@ -5,10 +5,23 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Mon, 27 Oct 2025 14:40:07 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 27 Oct 2025 14:44:15 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>David&apos;s Fruity Advice</title>
+    <link>https://chica.zone/#27</link>
+    <guid isPermaLink="false">https://chica.zone/#27</guid>
+    <pubDate>Mon, 27 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>David's Fruity Advice</strong></p>
+    <p>Published: 2025-10-27</p>
+    <p><img src="https://chica.zone//comics/changa27.png" alt="David's Fruity Advice" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa27.png" type="image/png" />
+  </item>
 
   <item>
     <title>Lee&apos;s Lady</title>

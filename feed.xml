@@ -5,10 +5,23 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Wed, 29 Oct 2025 13:54:29 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 29 Oct 2025 13:55:28 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>Cass&apos;s Loss</title>
+    <link>https://chica.zone/#29</link>
+    <guid isPermaLink="false">https://chica.zone/#29</guid>
+    <pubDate>Wed, 29 Oct 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Cass's Loss</strong></p>
+    <p>Published: 2025-10-29</p>
+    <p><img src="https://chica.zone//comics/changa29.png" alt="Cass's Loss" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa29.png" type="image/png" />
+  </item>
 
   <item>
     <title>Baka Moment!</title>

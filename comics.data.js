@@ -28,7 +28,8 @@ const COMICS = {
   26: { image: '/comics/changa26.png', date: '2025-10-26', title: "Lee's Lady" },
   27: { image: '/comics/changa27.png', date: '2025-10-27', title: "David's Fruity Advice" },
   28: { image: '/comics/changa28.png', date: '2025-10-28', title: "Baka Moment!" },
-  29: { image: '/comics/changa29.png', date: '2025-10-29', title: "Cass's Loss" }
+  29: { image: '/comics/changa29.png', date: '2025-10-29', title: "Cass's Loss" },
+  30: { image: '/comics/changa30.png', date: '2025-10-30', title: "Love and Respect" }
 };
 
 // Expose to browser and Node

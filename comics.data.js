@@ -30,7 +30,8 @@ const COMICS = {
   28: { image: '/comics/changa28.png', date: '2025-10-28', title: "Baka Moment!" },
   29: { image: '/comics/changa29.png', date: '2025-10-29', title: "Cass's Loss" },
   30: { image: '/comics/changa30.png', date: '2025-10-30', title: "Love and Respect" },
-  31: { image: '/comics/changa31.png', date: '2025-10-31', title: "Happy Halloween!" }
+  31: { image: '/comics/changa31.png', date: '2025-10-31', title: "Happy Halloween!" },
+  32: { image: '/comics/changa32.png', date: '2025-11-01', title: "Lee's Undersea Adventure" }
 };
 
 // Expose to browser and Node

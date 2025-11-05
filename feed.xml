@@ -5,10 +5,23 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Wed, 05 Nov 2025 21:03:58 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 05 Nov 2025 21:04:50 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>Club Chica</title>
+    <link>https://chica.zone/#36</link>
+    <guid isPermaLink="false">https://chica.zone/#36</guid>
+    <pubDate>Wed, 05 Nov 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Club Chica</strong></p>
+    <p>Published: 2025-11-05</p>
+    <p><img src="https://chica.zone//comics/changa36.png" alt="Club Chica" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa36.png" type="image/png" />
+  </item>
 
   <item>
     <title>Election Day!</title>

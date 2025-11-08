@@ -5,10 +5,49 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Sat, 08 Nov 2025 15:44:13 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 08 Nov 2025 15:45:52 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>Wesam&apos;s Wisdom</title>
+    <link>https://chica.zone/#39</link>
+    <guid isPermaLink="false">https://chica.zone/#39</guid>
+    <pubDate>Sat, 08 Nov 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Wesam's Wisdom</strong></p>
+    <p>Published: 2025-11-08</p>
+    <p><img src="https://chica.zone//comics/changa39.png" alt="Wesam's Wisdom" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa39.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>Greetings, Fellow Changite!</title>
+    <link>https://chica.zone/#38</link>
+    <guid isPermaLink="false">https://chica.zone/#38</guid>
+    <pubDate>Fri, 07 Nov 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Greetings, Fellow Changite!</strong></p>
+    <p>Published: 2025-11-07</p>
+    <p><img src="https://chica.zone//comics/changa38.png" alt="Greetings, Fellow Changite!" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa38.png" type="image/png" />
+  </item>
+
+  <item>
+    <title>The Barista&apos;s Punishment</title>
+    <link>https://chica.zone/#37</link>
+    <guid isPermaLink="false">https://chica.zone/#37</guid>
+    <pubDate>Thu, 06 Nov 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>The Barista's Punishment</strong></p>
+    <p>Published: 2025-11-06</p>
+    <p><img src="https://chica.zone//comics/changa37.png" alt="The Barista's Punishment" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa37.png" type="image/png" />
+  </item>
 
   <item>
     <title>Club Chica</title>

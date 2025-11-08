@@ -35,7 +35,10 @@ const COMICS = {
   33: { image: '/comics/changa33.png', date: '2025-11-02', title: "The Chica Commandments" },
   34: { image: '/comics/changa34.png', date: '2025-11-03', title: "Lee's Lagoon" },
   35: { image: '/comics/changa35.png', date: '2025-11-04', title: "Election Day!" },
-  36: { image: '/comics/changa36.png', date: '2025-11-05', title: "Club Chica" }
+  36: { image: '/comics/changa36.png', date: '2025-11-05', title: "Club Chica" },
+  37: { image: '/comics/changa37.png', date: '2025-11-06', title: "The Barista's Punishment" },
+  38: { image: '/comics/changa38.png', date: '2025-11-07', title: "Greetings, Fellow Changite!" },
+  39: { image: '/comics/changa39.png', date: '2025-11-08', title: "Wesam's Wisdom" }
 };
 
 // Expose to browser and Node

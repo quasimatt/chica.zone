@@ -5,10 +5,23 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Sun, 09 Nov 2025 21:46:19 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 09 Nov 2025 21:47:15 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>Matt&apos;s Mystery</title>
+    <link>https://chica.zone/#40</link>
+    <guid isPermaLink="false">https://chica.zone/#40</guid>
+    <pubDate>Sun, 09 Nov 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Matt's Mystery</strong></p>
+    <p>Published: 2025-11-09</p>
+    <p><img src="https://chica.zone//comics/changa40.png" alt="Matt's Mystery" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa40.png" type="image/png" />
+  </item>
 
   <item>
     <title>Wesam&apos;s Wisdom</title>

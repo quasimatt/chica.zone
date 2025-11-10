@@ -39,7 +39,8 @@ const COMICS = {
   37: { image: '/comics/changa37.png', date: '2025-11-06', title: "The Barista's Punishment" },
   38: { image: '/comics/changa38.png', date: '2025-11-07', title: "Greetings, Fellow Changite!" },
   39: { image: '/comics/changa39.png', date: '2025-11-08', title: "Wesam's Wisdom" },
-  40: { image: '/comics/changa40.png', date: '2025-11-09', title: "Matt's Mystery" }
+  40: { image: '/comics/changa40.png', date: '2025-11-09', title: "Matt's Mystery" },
+  41: { image: '/comics/changa41.png', date: '2025-11-10', title: "Matt's Squeak-ret!" }
 };
 
 // Expose to browser and Node

@@ -41,7 +41,8 @@ const COMICS = {
   39: { image: '/comics/changa39.png', date: '2025-11-08', title: "Wesam's Wisdom" },
   40: { image: '/comics/changa40.png', date: '2025-11-09', title: "Matt's Mystery" },
   41: { image: '/comics/changa41.png', date: '2025-11-10', title: "Matt's Squeak-ret!" },
-  41: { image: '/comics/changa42.png', date: '2025-11-11', title: "Changa Tu Madre!" }
+  42: { image: '/comics/changa42.png', date: '2025-11-11', title: "Changa Tu Madre!" },
+  43: { image: '/comics/changa43.png', date: '2025-11-12', title: "¿Que Es Una Changita?" }
 };
 
 // Expose to browser and Node

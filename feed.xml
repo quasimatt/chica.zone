@@ -5,10 +5,23 @@
   <link>https://chica.zone</link>
   <description>CHICA MOB QUARTERLY is a daily comic saga.</description>
   <language>en-us</language>
-  <lastBuildDate>Thu, 13 Nov 2025 20:19:13 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 13 Nov 2025 20:20:22 GMT</lastBuildDate>
   <docs>https://www.rssboard.org/rss-specification</docs>
   <generator>build_rss.js</generator>
   <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://chica.zone/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>Cass&apos;s Confession</title>
+    <link>https://chica.zone/#44</link>
+    <guid isPermaLink="false">https://chica.zone/#44</guid>
+    <pubDate>Thu, 13 Nov 2025 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+    <p><strong>Cass's Confession</strong></p>
+    <p>Published: 2025-11-13</p>
+    <p><img src="https://chica.zone//comics/changa44.png" alt="Cass's Confession" /></p>
+  ]]></description>
+    <enclosure url="https://chica.zone//comics/changa44.png" type="image/png" />
+  </item>
 
   <item>
     <title>¿Que Es Una Changita?</title>
